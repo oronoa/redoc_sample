@@ -24,9 +24,10 @@ servers:
 paths:
   /refresh_token:
     post:
+      operationId: refresh
       tags:
         - auth
-      description: Validate JWT token vs the server
+      description: Refresh and get new JWT token, when JWT token is about to expire client needs to refresh using the refresh token 
       responses:
         '200':
           description: OK
@@ -111,7 +112,7 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: '#/components/schemas/Event'
+                - $ref: '#/components/schemas/Events'
 
   /pets:
     get:
@@ -268,6 +269,12 @@ components:
               description: current minimal supported app or client version
               example: '3.5.1'
               type: string
+
+    Events:
+      description: Events Array
+      type: array
+      items:
+        $ref: '#/components/schemas/Event'
 
     Event:
       description: Body for event
