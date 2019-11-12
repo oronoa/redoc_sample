@@ -29,6 +29,8 @@ paths:
   /refresh_token:
     post:
       operationId: refresh
+      security: 
+        -
       tags:
         - auth
       description: |
