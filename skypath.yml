@@ -111,8 +111,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/Events'
+              $ref: '#/components/schemas/UpdateRequestBody'
 
   /pets:
     get:
@@ -270,6 +269,20 @@ components:
               example: '3.5.1'
               type: string
 
+    UpdateRequestBody:
+      description: Update request body
+      type: object
+      properties:
+        events:
+          description: App Events that happened since last update
+          $ref: '#/components/schemas/Events'
+        turbulences:
+          description: Turbulence Events that happened since last update
+          $ref: '#/components/schemas/Turbulences'
+        position:
+          description: Position of the aircraft
+          $ref: '#/components/schemas/Position'
+
     Events:
       description: Events Array
       type: array
@@ -297,6 +310,56 @@ components:
               description: Additional info about the event
               example: { "size" : 8 }
               type: object
+
+    Turbulences:
+      description: Turbulences Array
+      type: array
+      items:
+        $ref: '#/components/schemas/Turbulence'
+
+    Turbulence:
+      description: Body for turbulence event
+      allOf:
+        - type: object
+          required:
+            - ts
+            - sev
+            - meta
+          properties:
+            ts:
+              description: timestamp (unix epoch)
+              example: 140454545
+              type: integer
+            type: 
+              description: severity of turbulence
+              example: 3
+              type: integer
+            meta:
+              description: Additional info about the event
+              example: { "size" : 8 }
+              type: object
+
+    Position:
+      description: Aircraft Position
+      allOf:
+        - type: object
+          required:
+            - lat
+            - lon
+            - alt
+          properties:
+            lat:
+              description: latitude tile
+              example: 34
+              type: integer
+            lon: 
+              description: lontitude tile 
+              example: 702
+              type: integer
+            alt:
+              description: altitude of aircraft in tiles
+              example: 14
+              type: integer
 
     Pet:
       allOf:
