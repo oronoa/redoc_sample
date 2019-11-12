@@ -73,6 +73,12 @@ paths:
       description: |
         Login to the server and get a JWT token, this allows partners to exchange their API_KEY
         and user_id for a JWT token which can be user in further calls
+      requestBody:
+        description: Login params
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
       responses:
         '200':
           description: OK
@@ -133,18 +139,41 @@ components:
       in: header
   
   schemas:
+
+    LoginRequest:
+      description: Body for login request
+      type: object
+      required:
+        - user_id
+      properties:
+        user_id:
+          type: string
+
     LoginResponse:
       description: Response for login
       type: object
-      required:
-        - code
-        - message
       properties:
-        code:
-          type: integer
-          format: int32
+        token:
+          type: string
+        refresh_token:
+          type: string
         message:
           type: string
+        user_id: 
+          type: string
+        role:
+          type: string
+        company:
+          type: string
+        company_id:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+
 
     HelloResponse:
       description: Response for hello
