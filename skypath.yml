@@ -122,7 +122,7 @@ paths:
       tags:
         - world
       security:
-        - bearerAuth: []         
+        - bearerAuth: [pilot]         
       operationId: initial
       description: | 
         Get an initial world view of the turbulence and traffic of all aircraft, client or app should call this when initializing of after 
