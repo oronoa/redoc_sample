@@ -25,7 +25,7 @@ paths:
       description: Gets basic information about SkyPath server version and minimal client version
       responses:
         '200':
-          description: hello response
+          description: OK
           content:
             application/json:
               schema:
@@ -39,6 +39,17 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: The user ID.
+                  username:
+                    type: string
+                    description: The user name.
   /initial:
     get:
       operationId: initial
