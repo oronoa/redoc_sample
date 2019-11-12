@@ -79,19 +79,12 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    description: The user ID.
-                  username:
-                    type: string
-                    description: The user name.
+                $ref: '#/components/schemas/LoginResponse'
         '401':
           $ref: '#/components/responses/Unauthorized'   
         '404':
           $ref: '#/components/responses/NotFound'       
-          
+
   /initial:
     get:
       tags:
@@ -140,6 +133,19 @@ components:
       in: header
   
   schemas:
+    LoginResponse:
+      description: Response for login
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+
     HelloResponse:
       description: Response for hello
       allOf:
