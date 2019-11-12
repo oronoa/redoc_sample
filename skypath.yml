@@ -105,6 +105,13 @@ paths:
       responses:
         '200':
           description: OK
+      requestBody:
+        description: The objects to send from client to server with what changed 
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/Event'
 
   /pets:
     get:
@@ -261,6 +268,28 @@ components:
               description: current minimal supported app or client version
               example: '3.5.1'
               type: string
+
+    Event:
+      description: Body for event
+      allOf:
+        - type: object
+          required:
+            - ts
+            - type
+            - meta
+          properties:
+            ts:
+              description: timestamp (unix epoch)
+              example: 140454545
+              type: integer
+            type: 
+              description: type of events
+              example: 'NO_GPS'
+              type: string
+            meta:
+              description: Additional info about the event
+              example: { "size" : 8 }
+              type: object
 
     Pet:
       allOf:
