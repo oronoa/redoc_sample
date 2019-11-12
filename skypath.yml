@@ -26,6 +26,24 @@ servers:
     description: Production Server
 
 paths:
+  /aircrafts:
+    get:
+      description: Get list of supported aircraft types
+      tags:
+        - general
+      responses:
+        '200':
+          description: OK
+
+  /settings:
+    get:
+      description: Get the initial recommanded settings for this user
+      tags:
+        - general
+      responses:
+        '200':
+          description: OK
+
   /refresh_token:
     post:
       operationId: refresh
