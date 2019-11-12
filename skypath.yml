@@ -95,7 +95,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'       
 
-  /initial/{fg}/{a}/{b}/{d}:
+  /initial/{company_id}/{a}/{b}/{d}:
     get:
       tags:
         - world
@@ -106,9 +106,21 @@ paths:
         Get an initial world view of the turbulence and traffic of all aircraft, client or app should call this when initializing of after 
         a period of no connectivity (5 minutes) to re-init it's internal memory to the current state. When the is connectivity the app should 
         call the /update routes to get only the diff from the last update.
+      parameters:
+        - in: path
+          name: company_id
+          schema:
+            type: string
+          required: true
+          description: Internal Company Id
       responses:
         '200':
           description: OK
+        '401':
+          $ref: '#/components/responses/Unauthorized'   
+        '404':
+          $ref: '#/components/responses/NotFound'       
+
   /updates:
     get:
       tags:
