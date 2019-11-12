@@ -95,7 +95,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'       
 
-  /initial/{company_id}/{a}/{b}/{d}:
+  /initial/{company_id}/{aircraft_type}/{hours}/{delivery_token}/{delivery_token_expiry}:
     get:
       tags:
         - world
@@ -113,6 +113,30 @@ paths:
             type: string
           required: true
           description: Internal Company Id
+        - in: path
+          name: aircraft_type
+          schema:
+            type: string
+          required: true
+          description: Type of aircraft client is flying
+        - in: path
+          name: hours
+          schema:
+            type: integer
+          required: true
+          description: Number of hours back for turbulence reports
+        - in: path
+          name: delivery_token
+          schema:
+            type: string
+          required: true
+          description: Delivery token recived in /delivery_token
+        - in: path
+          name: delivery_token_expiry
+          schema:
+            type: integer
+          required: true
+          description: Delivery token expiration as recived in /delivery_token_expiry
       responses:
         '200':
           description: OK
