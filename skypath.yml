@@ -145,12 +145,45 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'       
 
-  /updates:
+  /updates/{company_id}/{aircraft_type}/{skypath_tick}/{delivery_token}/{delivery_token_expiry}:
     get:
       tags:
         - world
       operationId: updates
       description: get updates since "skypath tick" to client
+      parameters:
+        - in: path
+          name: company_id
+          schema:
+            type: string
+          required: true
+          description: Internal Company Id
+        - in: path
+          name: aircraft_type
+          schema:
+            type: string
+          required: true
+          description: Type of aircraft client is flying
+        - in: path
+          name: skypath_tick
+          schema:
+            type: integer
+          required: true
+          description: last Skypath tick you got in the last succesfull get /update
+        - in: path
+          name: delivery_token
+          schema:
+            type: string
+          required: true
+          description: Delivery token recived in /delivery_token
+        - in: path
+          name: delivery_token_expiry
+          schema:
+            type: integer
+          required: true
+          description: Delivery token expiration as recived in /delivery_token_expiry
+  
+
       responses:
         '200':
           description: OK
