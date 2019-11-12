@@ -25,7 +25,11 @@ paths:
       description: Gets basic information about SkyPath server version and minimal client version
       responses:
         '200':
-          description: OK
+          description: hello response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HelloResponse'
   /login:
     post:
       operationId: login
@@ -179,6 +183,21 @@ components:
       in: header
   
   schemas:
+    HelloResponse:
+      allOf:
+        - type: object
+          required:
+            - ver
+            - current_app_version
+            - minimal_compatible_app_version
+          properties:
+            ver:
+              type: string
+            current_app_version: 
+              type: string
+            minimal_compatible_app_version:
+              type: string
+
     Pet:
       allOf:
         - $ref: '#/components/schemas/NewPet'
