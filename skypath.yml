@@ -99,6 +99,8 @@ paths:
     get:
       tags:
         - world
+      security:
+        - bearerAuth: []         
       operationId: initial
       description: | 
         Get an initial world view of the turbulence and traffic of all aircraft, client or app should call this when initializing of after 
@@ -332,8 +334,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
 
-security:
-  - bearerAuth: []         
 
   
     
