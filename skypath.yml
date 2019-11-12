@@ -73,6 +73,8 @@ paths:
       description: |
         Login to the server and get a JWT token, this allows partners to exchange their API_KEY
         and user_id for a JWT token which can be user in further calls
+      security:
+        - apiKey : []
       requestBody:
         description: Login params
         content:
@@ -136,7 +138,7 @@ components:
       scheme: bearer
       bearerFormat: JWT    
     
-    name:
+    apiKey:
       type: apiKey
       name: api_key
       in: header
@@ -330,6 +332,7 @@ components:
 
 security:
   - bearerAuth: []         
+
   
     
 
