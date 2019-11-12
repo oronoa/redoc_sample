@@ -21,6 +21,8 @@ servers:
 paths:
   /hello:
     get:
+      tags:
+        - general
       operationId: hello
       description: Gets basic information about SkyPath server version and minimal client version
       responses:
@@ -124,6 +126,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
     post:
+      tags:
+        - pets
       description: Creates a new pet in the store.  Duplicates are allowed
       operationId: addPet
       requestBody:
@@ -176,6 +180,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
     delete:
+      tags:
+        - pets
       description: deletes a single pet based on the ID supplied
       operationId: deletePet
       parameters:
