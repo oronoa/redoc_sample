@@ -156,30 +156,35 @@ paths:
           name: company_id
           schema:
             type: string
+            example: "UA"
           required: true
           description: Internal Company Id
         - in: path
           name: aircraft_type
           schema:
             type: string
+            example: "737"
           required: true
           description: Type of aircraft client is flying
         - in: path
           name: skypath_tick
           schema:
             type: integer
+            example: "708695"
           required: true
           description: last Skypath tick you got in the last succesfull get /update
         - in: path
           name: delivery_token
           schema:
             type: string
+            example : "aa"
           required: true
           description: Delivery token recived in /delivery_token
         - in: path
           name: delivery_token_expiry
           schema:
             type: integer
+            example: 1454655656
           required: true
           description: Delivery token expiration as recived in /delivery_token_expiry
   
