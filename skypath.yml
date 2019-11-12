@@ -2,7 +2,11 @@ openapi: "3.0.0"
 info:
   version: 1.1.2
   title: SkyPath Turbulence avoidance API documentation 
-  description: An API for the SkyPath turbulence avoidance server Rest API in OpenAPI 3.0 specification
+  description: |
+    Skypath by Yamasee is a unique service that can help airline pilots avoid clear air turbulences. This is 
+    the API documentation for interacting with the SkyPath server for application developers. It describes the the SkyPath 
+    turbulence avoidance server Rest API in OpenAPI 3.0 specification. You will need a partner API_KEY to be able to 
+    login to the system and get authentication tokens valid for the different operations
   termsOfService: https://yamasee.global/terms/
   contact:
     name: SkyPath API Team
@@ -27,7 +31,9 @@ paths:
       operationId: refresh
       tags:
         - auth
-      description: Refresh and get new JWT token, when JWT token is about to expire client needs to refresh using the refresh token 
+      description: |
+        When the client first logs in it gets a JWT token and a refresh token, the JWT token has an expiry of 3 hours, when the client gets an error or even before 
+        the token expires, the client needs to call this route to refresh and get new JWT token. 
       responses:
         '200':
           description: OK
@@ -49,7 +55,9 @@ paths:
       tags:
         - general
       operationId: hello
-      description: Gets basic information about SkyPath server version and minimal client version
+      description: |
+        Gets basic information about SkyPath server version and minimal client version, if the app version is lower than the minimal 
+        allowed app version the client needs to not allow login and suggest an immidiate upgrade for the user.
       responses:
         '200':
           description: OK
