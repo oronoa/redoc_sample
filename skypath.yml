@@ -1,6 +1,6 @@
 openapi: "3.0.0"
 info:
-  version: 1.0.0
+  version: 1.1.2
   title: SkyPath Turbulence avoidance API documentation 
   description: An API for the SkyPath turbulence avoidance server Rest API in OpenAPI 3.0 specification
   termsOfService: https://yamasee.global/terms/
@@ -17,7 +17,39 @@ info:
     altText: "SkyPath logo"
 servers:
   - url: https://server.yamasee-skypath.com/api
+
 paths:
+  /:
+    get:
+      description: 
+      responses:
+        '200':
+          description: OK
+  /login:
+    post:
+      description: 
+      responses:
+        '200':
+          description: OK
+  /updates:
+    get:
+      description: get updates since "skypath tick" to client
+      responses:
+        '200':
+          description: OK
+
+    post:
+      description: post updates by client of aircraft position and new turbulence discovered to server
+      responses:
+        '200':
+          description: OK
+
+  /initial:
+    get:
+      description: 
+      responses:
+        '200':
+          description: OK
   /pets:
     get:
       description: |
@@ -126,7 +158,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+
 components:
+
+  securitySchemes:
+    bearerAuth:            
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    
+    
+    name:
+      type: apiKey
+      name: api_key
+      in: header
+  
   schemas:
     Pet:
       allOf:
@@ -161,8 +206,8 @@ components:
         message:
           type: string
 
-  securitySchemes:
-    name:
-      type: apiKey
-      name: api_key
-      in: header
+security:
+  - bearerAuth: []         
+  
+    
+
