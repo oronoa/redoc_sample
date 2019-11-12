@@ -236,11 +236,14 @@ components:
     bearerAuth:            
       type: http
       scheme: bearer
+      description: JWT non expired token recived in response to a succesfull login request
       bearerFormat: JWT    
+      
     
     apiKey:
       type: apiKey
       name: api_key
+      description: API key to authorize requests. If you don't have a SkyPAth API key, contact Yamasee support
       in: header
   
   schemas:
