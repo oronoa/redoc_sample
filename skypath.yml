@@ -184,7 +184,7 @@ components:
   
   schemas:
     HelloResponse:
-      title: Response for hello
+      description: Response for hello
       allOf:
         - type: object
           required:
