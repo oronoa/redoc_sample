@@ -95,7 +95,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'       
 
-  /initial:
+  /initial/{fg}/{a}/{b}/{d}:
     get:
       tags:
         - world
