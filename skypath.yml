@@ -56,7 +56,7 @@ paths:
         - general
       operationId: hello
       description: |
-        Gets basic information about SkyPath server version and minimal client version, if the app version is lower than the minimal 
+        Gets basic information about SkyPath server version and minimal client version needed, if the app version is lower than the minimal 
         allowed app version the client needs to not allow login and suggest an immidiate upgrade for the user.
       responses:
         '200':
@@ -96,7 +96,10 @@ paths:
       tags:
         - world
       operationId: initial
-      description: Get an initial world view of the turbulence and traffic of all aircraft
+      description: | 
+        Get an initial world view of the turbulence and traffic of all aircraft, client or app should call this when initializing of after 
+        a period of no connectivity (5 minutes) to re-init it's internal memory to the current state. When the is connectivity the app should 
+        call the /update routes to get only the diff from the last update.
       responses:
         '200':
           description: OK
