@@ -21,35 +21,38 @@ servers:
 paths:
   /hello:
     get:
-      operationId: Hello
+      operationId: hello
       description: Gets basic information about SkyPath server version and minimal client version
       responses:
         '200':
           description: OK
   /login:
     post:
-      operationId: Login
-      description: Login to the server and get a JWT token 
+      operationId: login
+      description: |
+        Login to the server and get a JWT token, this allows partners to exchange their API_KEY
+        and user_id for a JWT token which can be user in further calls
+      responses:
+        '200':
+          description: OK
+  /initial:
+    get:
+      operationId: initial
+      description: Get an initial world view of the turbulence and traffic of all aircraft
       responses:
         '200':
           description: OK
   /updates:
     get:
-      operationId: Updates
+      operationId: updates
       description: get updates since "skypath tick" to client
       responses:
         '200':
           description: OK
 
     post:
+      operationId: updates
       description: post updates by client of aircraft position and new turbulence discovered to server
-      responses:
-        '200':
-          description: OK
-
-  /initial:
-    get:
-      description: 
       responses:
         '200':
           description: OK
