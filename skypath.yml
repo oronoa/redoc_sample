@@ -19,20 +19,23 @@ servers:
   - url: https://server.yamasee-skypath.com/api
 
 paths:
-  /:
+  /hello:
     get:
-      description: 
+      operationId: Hello
+      description: Gets basic information about SkyPath server version and minimal client version
       responses:
         '200':
           description: OK
   /login:
     post:
-      description: 
+      operationId: Login
+      description: Login to the server and get a JWT token 
       responses:
         '200':
           description: OK
   /updates:
     get:
+      operationId: Updates
       description: get updates since "skypath tick" to client
       responses:
         '200':
