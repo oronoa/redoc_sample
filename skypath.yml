@@ -16,9 +16,33 @@ info:
     backgroundColor: "#FFFFFF"
     altText: "SkyPath logo"
 servers:
+  - url: https://devserver.yamasee-skypath.com/api
+    description: Development Server
   - url: https://server.yamasee-skypath.com/api
+    description: Production Server
 
 paths:
+  /refresh_token:
+    post:
+      tags:
+        - auth
+      description: Validate JWT token vs the server
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        description: JWT refresh token 
+        required: true
+        content:
+          application/json:
+              schema:
+                type: object
+                required:
+                  - token
+                properties:
+                  token:
+                    type: string
+                    description: The refresh token client got upon login
   /hello:
     get:
       tags:
