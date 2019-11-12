@@ -184,6 +184,7 @@ components:
   
   schemas:
     HelloResponse:
+      title: Response for hello
       allOf:
         - type: object
           required:
@@ -192,10 +193,13 @@ components:
             - minimal_compatible_app_version
           properties:
             ver:
+              description: current server version
               type: string
             current_app_version: 
+              description: current app client version
               type: string
             minimal_compatible_app_version:
+              description: current minimal supported app or client version
               type: string
 
     Pet:
