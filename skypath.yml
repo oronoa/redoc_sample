@@ -24,9 +24,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'examples.yml#/AircraftTypes'
+                $ref: 'types.yml#/AircraftTypes'
               example:
-                $ref: 'examples.yml#/AircraftTypes/example'
+                $ref: 'types.yml#/AircraftTypes'
         '401':
           $ref: 'responses.yml#/Unauthorized'   
         '404':
