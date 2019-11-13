@@ -20,7 +20,7 @@ paths:
         - general
       responses:
         '200':
-          description: OK
+          description: A valid list of system supported aircraft types
           content:
             application/json:
               schema:
