@@ -12,10 +12,10 @@ tags:
     description: Everything to do with the world map view of aircraft positions and turbulence reports
 
 paths:
-  /aircrafts:
+  /aircraft_types:
     get:
-      operationId: aircrafts
-      description: Get list of supported aircraft types
+      operationId: aircraft_types
+      description: Get list of system supported aircraft types
       tags:
         - general
       responses:
@@ -26,7 +26,7 @@ paths:
               schema:
                 $ref: 'types.yml#/AircraftTypes'
               example:
-                $ref: 'types.yml#/AircraftTypes'
+                $ref: 'types.yml#/AircraftTypes/example'
         '401':
           $ref: 'responses.yml#/Unauthorized'   
         '404':
