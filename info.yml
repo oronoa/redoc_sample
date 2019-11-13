@@ -17,8 +17,3 @@ x-logo:
   url: "https://github.com/oronoa/redoc_sample/raw/master/logo.png"
   backgroundColor: "#FFFFFF"
   altText: "SkyPath logo"
-servers:
-  - url: https://devserver.yamasee-skypath.com/api
-    description: Development Server
-  - url: https://server.yamasee-skypath.com/api
-    description: Production Server
