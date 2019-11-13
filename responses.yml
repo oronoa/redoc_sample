@@ -1,0 +1,24 @@
+NotFound:
+    description: The specified resource was not found
+    content:
+      application/json:
+        schema:
+          $ref: '#/Error'
+Unauthorized:
+    description: Unauthorized
+    content:
+      application/json:
+        schema:
+          $ref: '#/Error'
+
+Error:
+  type: object
+  required:
+    - code
+    - message
+  properties:
+    code:
+      type: integer
+      format: int32
+    message:
+      type: string

@@ -1,0 +1,24 @@
+version: 1.1.2
+title: SkyPath Turbulence avoidance API documentation 
+description: |
+  Skypath by Yamasee is a unique service that can help airline pilots avoid clear air turbulences. This is 
+  the API documentation for interacting with the SkyPath server for application developers. It describes the the SkyPath 
+  turbulence avoidance server Rest API in OpenAPI 3.0 specification. You will need a partner API_KEY to be able to 
+  login to the system and get authentication tokens valid for the different operations
+termsOfService: https://yamasee.global/terms/
+contact:
+  name: SkyPath API Team
+  email: info@yamasee.global
+  url: https://yamasee.global/api
+license:
+  name: Apache 2.0
+  url: https://www.apache.org/licenses/LICENSE-2.0.html
+x-logo:
+  url: "https://github.com/oronoa/redoc_sample/raw/master/logo.png"
+  backgroundColor: "#FFFFFF"
+  altText: "SkyPath logo"
+servers:
+  - url: https://devserver.yamasee-skypath.com/api
+    description: Development Server
+  - url: https://server.yamasee-skypath.com/api
+    description: Production Server
