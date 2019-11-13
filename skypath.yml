@@ -27,6 +27,11 @@ paths:
                 $ref: 'examples.yml#/AircraftTypes'
               example:
                 $ref: 'examples.yml#/AircraftTypes/example'
+        '401':
+          $ref: 'responses.yml#/Unauthorized'   
+        '404':
+          $ref: 'responses.yml#/NotFound'       
+
 
   /settings:
     get:
