@@ -26,8 +26,7 @@ paths:
               schema:
                 $ref: 'examples.yml#/AircraftTypes'
               example:
-                aircrafts:
-                  $ref: 'examples.yml#/AircraftTypes/example'
+                $ref: 'examples.yml#/AircraftTypes/example'
 
   /settings:
     get:
