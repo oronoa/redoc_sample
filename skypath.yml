@@ -23,7 +23,7 @@ paths:
           description: OK
           content:
             application/json:
-              examples:
+              example:
                 aircrafts:
                   $ref: 'examples.yml#/AircraftTypesExample'
 
