@@ -8,11 +8,11 @@ AircraftTypesExample:
         type: string
       title:
         type: string
-    example:
-      - id : 737
-        title : Boing 737
-      - id : 747
-        title : Boing 747
-      - id : A320
-        title : AirBus 320
+  example:
+    - id : 737
+      title : Boing 737
+    - id : 747
+      title : Boing 747
+    - id : A320
+      title : AirBus 320
   
