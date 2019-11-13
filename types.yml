@@ -16,3 +16,31 @@ AircraftTypesResponse:
     - id : A320
       title : AirBus 320
   
+
+ByByResponse:
+  description: Bybye
+  type: object
+  required:
+    - ver
+    - current_app_version
+    - minimal_compatible_app_version
+  properties:
+    ver:
+      description: current server version
+      example: '1.2.4'
+      type: string
+    current_app_version: 
+      description: current app client version
+      example: '4.0.0'
+      type: string
+    minimal_compatible_app_version:
+      description: current minimal supported app or client version
+      example: '3.5.1'
+      type: string
+  example:
+    - id : 737
+      title : Boing 737
+    - id : 747
+      title : Boing 747
+    - id : A320
+      title : AirBus 320
