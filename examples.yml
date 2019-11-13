@@ -1,4 +1,4 @@
-AircraftTypesExample:
+AircraftTypes:
   type: array
   summary: Sample of aircraft types response
   items:
