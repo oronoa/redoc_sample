@@ -2,6 +2,13 @@ openapi: "3.0.0"
 info:
   $ref: info.yml
 
+
+tags:
+  - name: general
+    description: General routes to query server version etc
+  - name: world
+    description: Everything to do with the world map view of aircraft positions and turbulence reports
+
 paths:
   /aircrafts:
     get:
