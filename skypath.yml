@@ -25,7 +25,7 @@ paths:
             application/json:
               example:
                 aircrafts:
-                  $ref: 'examples.yml#/AircraftTypesExample'
+                  $ref: 'examples.yml#/AircraftTypes/example'
 
   /settings:
     get:
