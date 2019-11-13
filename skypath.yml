@@ -6,6 +6,8 @@ info:
 tags:
   - name: general
     description: General routes to query server version etc
+  - name: auth
+    description: Login with API key, Refresh JWT tokens, everything to do with authentication
   - name: world
     description: Everything to do with the world map view of aircraft positions and turbulence reports
 
@@ -19,6 +21,11 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              examples:
+                aircrafts:
+                  $ref: 'examples.yml#/AircraftTypesExample'
 
   /settings:
     get:
@@ -26,6 +33,8 @@ paths:
       description: Get the initial recommanded settings for this user
       tags:
         - general
+      security:
+        - bearerAuth: [pilot]         
       responses:
         '200':
           description: OK
@@ -104,7 +113,7 @@ paths:
       tags:
         - world
       security:
-        - bearerAuth: [pilot]         
+        - bearerAuth: []         
       operationId: initial
       description: | 
         Get an initial world view of the turbulence and traffic of all aircraft, client or app should call this when initializing of after 
@@ -155,6 +164,8 @@ paths:
         - world
       operationId: updates
       description: get updates since "skypath tick" to client
+      security:
+        - bearerAuth: [pilot]         
       parameters:
         - in: path
           name: company_id
@@ -202,6 +213,9 @@ paths:
         - world
       operationId: updates
       description: post updates by client of aircraft position and new turbulence discovered to server
+      security:
+        - bearerAuth: [pilot]         
+
       responses:
         '200':
           description: OK
