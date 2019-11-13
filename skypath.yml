@@ -29,7 +29,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'types.yml#/ByByResponse'
+                $ref: 'types.yml#/AircraftTypesResponse'
         '401':
           $ref: 'responses.yml#/Unauthorized'   
         '404':

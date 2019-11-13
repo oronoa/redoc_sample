@@ -1,6 +1,5 @@
 AircraftTypesResponse:
   type: array
-  summary: Sample of aircraft types response
   items:
     type: object
     properties: 
