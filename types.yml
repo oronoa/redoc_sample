@@ -20,7 +20,8 @@ SettingsResponse:
   properties:
     modules:
       type: object
-      example : { dd : 1 }
+  example:
+    externalValue: 'http://example.com/examples/example.pdf'
 
 
 HelloResponse:
