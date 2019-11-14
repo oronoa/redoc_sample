@@ -21,7 +21,8 @@ SettingsResponse:
     modules:
       type: object
   example:
-    externalValue: 'http://example.com/examples/example.pdf'
+    modules:
+      externalValue: 'http://example.com/examples/example.pdf'
 
 
 HelloResponse:
