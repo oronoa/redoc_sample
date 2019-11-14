@@ -20,9 +20,7 @@ SettingsResponse:
   properties:
     modules:
       type: object
-  example:
-    modules:
-      externalValue: 'http://example.com/examples/example.pdf'
+                
 
 
 HelloResponse:
