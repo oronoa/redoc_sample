@@ -19,8 +19,7 @@ SettingsResponse:
   type: object
   properties:
     modules:
-      type: object
-                
+      type: object 
 
 
 HelloResponse:
