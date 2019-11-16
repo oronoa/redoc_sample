@@ -9,9 +9,9 @@ AircraftTypesResponse:
         type: string
   example:
     - id : 737
-      title : Boing 737
+      title : Boeing 737
     - id : 747
-      title : Boing 747
+      title : Boeing 747
     - id : A320
       title : AirBus 320
 
