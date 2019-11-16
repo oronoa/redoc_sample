@@ -8,11 +8,11 @@ AircraftTypesResponse:
       title:
         type: string
   example:
-    - id : 737
+    - id : "737"
       title : Boeing 737
-    - id : 747
+    - id : "747"
       title : Boeing 747
-    - id : A320
+    - id : "A320"
       title : AirBus 320
 
 SettingsResponse:
