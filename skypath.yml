@@ -33,6 +33,7 @@ paths:
         '401':
           $ref: 'responses.yml#/Unauthorized'   
         '404':
+          description: The specified resource was not found
           $ref: 'responses.yml#/NotFound'       
 
 
