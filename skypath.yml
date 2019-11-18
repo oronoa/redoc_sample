@@ -111,6 +111,10 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'types.yml#/RefreshTokenResponse'
       requestBody:
         description: JWT refresh token 
         required: true

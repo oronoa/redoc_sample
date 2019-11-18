@@ -21,13 +21,28 @@ SettingsResponse:
     modules:
       type: object 
   example:   
-    algorithm: 
-      type: x1 
+    module_a: 
+      property_a: x1 
       size: 8
-    updates: 
-      factor: 2
+    module_b: 
+      property_a: 2
       ability: 67
 
+RefreshTokenResponse:
+  description: Refresh token response
+  type: object
+  required:
+    - new_token
+  properties:
+    new_token:
+      description: new JWT token with new expiry of 3 hours
+      example: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImUwMTAxMDEiLCJyb2xlIjoiYWRtaW4iLCJjb21wYW55IjoiWWFtYXNlZSIsImNvbXBhbnlJbnRlcm5hbElkIjoiWVMiLCJpYXQiOjE1NzM1NzM3MDQsImV4cCI6MTYwNTEwOTcwNH0.R9S2BOVpRx6H9_0lZWKqRg93kgYweR3kN3OZonHQY4w'
+      type: string
+    new_refresh_token: 
+      description: optional new refresh token in case server replaces refresh token
+      example: 'Jyb2xlIjoiYWRtaW4iLCJjb21wYW55IjoiWWFtYXNlZSIsImNvbXBhbnlJ93kgYweR3kN3OZonHQY4w'
+      type: string
+    
 HelloResponse:
   description: Response for hello
   type: object
