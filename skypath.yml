@@ -31,6 +31,7 @@ paths:
               schema:
                 $ref: 'types.yml#/AircraftTypesResponse'
         '401':
+          description: Unauthorized
           $ref: 'responses.yml#/Unauthorized'   
         '404':
           description: The specified resource was not found
