@@ -42,3 +42,39 @@ HelloResponse:
       description: current minimal supported app or client version
       example: '3.5.1'
       type: string
+
+
+LoginResponse:
+  description: Response for login
+  type: object
+  properties:
+    token:
+      type: string
+      example: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImUwMTAxMDEiLCJyb2xlIjoiYWRtaW4iLCJjb21wYW55IjoiWWFtYXNlZSIsImNvbXBhbnlJbnRlcm5hbElkIjoiWVMiLCJpYXQiOjE1NzM1NzM3MDQsImV4cCI6MTYwNTEwOTcwNH0.R9S2BOVpRx6H9_0lZWKqRg93kgYweR3kN3OZonHQY4w'
+    refresh_token:
+      type: string
+      example : 'R9S2BOVpRx6H9_0lZWKqRg93kgYweR3kN3OZonHQY4w'
+    message:
+      type: string
+      example: 'Hello from SkyPath server'
+    user_id: 
+      type: string
+      example : 'ym0565666'
+    role:
+      type: string
+      example: 'pilot'
+    company:
+      type: string
+      example : 'united airlines'
+    company_id:
+      type: string
+      example: 'UA'
+    first_name:
+      type: string
+      example : 'John'
+    last_name:
+      type: string
+      example : 'Baker'
+    email:
+      type: string
+      example: 'john.baker@skypathapi.com'

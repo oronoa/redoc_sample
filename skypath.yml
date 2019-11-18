@@ -10,11 +10,11 @@ servers:
     
 tags:
   - name: general
-    description: General routes to query server version etc
+    description: General routes to query the server version etc
   - name: auth
     description: Login with API key, Refresh JWT tokens, everything to do with authentication
-  - name: world
-    description: Everything to do with the world map view of aircraft positions and turbulence reports
+  - name: map
+    description: Everything to do with map view of aircraft positions and turbulence reports
 
 paths:
   /aircraft_types:
@@ -93,7 +93,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LoginResponse'
+                $ref: 'types.yml#/LoginResponse'
+                
         '401':
           $ref: 'responses.yml#/Unauthorized'   
         '404':
@@ -128,7 +129,7 @@ paths:
   /initial/{company_id}/{aircraft_type}/{hours}/{delivery_token}/{delivery_token_expiry}:
     get:
       tags:
-        - world
+        - map
       security:
         - bearerAuth: []         
       operationId: initial
@@ -178,7 +179,7 @@ paths:
   /updates/{company_id}/{aircraft_type}/{skypath_tick}/{delivery_token}/{delivery_token_expiry}:
     get:
       tags:
-        - world
+        - map
       operationId: updates
       description: get updates since "skypath tick" to client
       security:
@@ -227,7 +228,7 @@ paths:
 
     post:
       tags:
-        - world
+        - map
       operationId: updates
       description: post updates by client of aircraft position and new turbulence discovered to server
       security:
@@ -269,41 +270,6 @@ components:
       properties:
         user_id:
           type: string
-
-    LoginResponse:
-      description: Response for login
-      type: object
-      properties:
-        token:
-          type: string
-          example: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImUwMTAxMDEiLCJyb2xlIjoiYWRtaW4iLCJjb21wYW55IjoiWWFtYXNlZSIsImNvbXBhbnlJbnRlcm5hbElkIjoiWVMiLCJpYXQiOjE1NzM1NzM3MDQsImV4cCI6MTYwNTEwOTcwNH0.R9S2BOVpRx6H9_0lZWKqRg93kgYweR3kN3OZonHQY4w'
-        refresh_token:
-          type: string
-          example : 'R9S2BOVpRx6H9_0lZWKqRg93kgYweR3kN3OZonHQY4w'
-        message:
-          type: string
-          example: 'Hello from SkyPath server'
-        user_id: 
-          type: string
-          example : 'ym0565666'
-        role:
-          type: string
-          example: 'pilot'
-        company:
-          type: string
-          example : 'united airlines'
-        company_id:
-          type: string
-          example: 'UA'
-        first_name:
-          type: string
-          example : 'John'
-        last_name:
-          type: string
-          example : 'Baker'
-        email:
-          type: string
-          example: 'john.baker@skypathapi.com'
 
     UpdateRequestBody:
       description: Update request body
