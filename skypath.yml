@@ -24,16 +24,16 @@ paths:
       tags:
         - general
       responses:
-        '200':
+        200:
           description: A valid list of system supported aircraft types
           content:
             application/json:
               schema:
                 $ref: 'types.yml#/AircraftTypesResponse'
-        '401':
+        401:
           description: Unauthorized
           $ref: 'responses.yml#/Unauthorized'   
-        '404':
+        404:
           description: The specified resource was not found
           $ref: 'responses.yml#/NotFound'       
 
@@ -53,9 +53,10 @@ paths:
             application/json:
               schema:
                 $ref: 'types.yml#/SettingsResponse'
-        '401':
+        401:
+          description: Unauthorized
           $ref: 'responses.yml#/Unauthorized'   
-        '404':
+        404:
           description: The specified resource was not found
           $ref: 'responses.yml#/NotFound'       
 
@@ -68,7 +69,7 @@ paths:
         Gets basic information about SkyPath server version and minimal client version needed, if the app version is lower than the minimal 
         allowed app version the client needs to not allow login and suggest an immidiate upgrade for the user.
       responses:
-        '200':
+        200:
           description: OK
           content:
             application/json:
@@ -91,16 +92,17 @@ paths:
             schema:
               $ref: '#/components/schemas/LoginRequest'
       responses:
-        '200':
+        200:
           description: OK
           content:
             application/json:
               schema:
                 $ref: 'types.yml#/LoginResponse'
                 
-        '401':
+        401:
+          description: The refresh token is not authorized 
           $ref: 'responses.yml#/Unauthorized'   
-        '404':
+        404:
           description: The specified resource was not found
           $ref: 'responses.yml#/NotFound'       
 
@@ -184,11 +186,12 @@ paths:
           required: true
           description: Delivery token expiration as recived in /delivery_token_expiry
       responses:
-        '200':
+        200:
           description: OK
-        '401':
+        401:
+          description: The refresh token is not authorized 
           $ref: 'responses.yml#/Unauthorized'   
-        '404':
+        404:
           description: The specified resource was not found
           $ref: 'responses.yml#/NotFound'       
 
@@ -239,11 +242,12 @@ paths:
   
 
       responses:
-        '200':
+        200:
           description: OK
-        '401':
+        401:
+          description: The refresh token is not authorized 
           $ref: 'responses.yml#/Unauthorized'   
-        '404':
+        404:
           description: The specified resource was not found
           $ref: 'responses.yml#/NotFound'       
 
@@ -256,11 +260,12 @@ paths:
         - bearerAuth: [pilot]         
 
       responses:
-        '200':
+        200:
           description: OK
-        '401':
+        401:
+          description: The refresh token is not authorized 
           $ref: 'responses.yml#/Unauthorized'   
-        '404':
+        404:
           description: The specified resource was not found
           $ref: 'responses.yml#/NotFound'       
 

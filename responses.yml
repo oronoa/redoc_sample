@@ -4,7 +4,6 @@ NotFound:
         schema:
           $ref: '#/Error'
 Unauthorized:
-    description: Unauthorized
     content:
       application/json:
         schema:
