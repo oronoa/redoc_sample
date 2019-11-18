@@ -116,6 +116,7 @@ paths:
               schema:
                 $ref: 'types.yml#/RefreshTokenResponse'
         '401':
+          description: Unauthorized
           $ref: 'responses.yml#/Unauthorized'   
         '404':
           $ref: 'responses.yml#/NotFound'       
