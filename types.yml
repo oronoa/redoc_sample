@@ -103,7 +103,6 @@ InitialResponse:
   properties:
     updates: 
       type: object
-      required: true
   example:
     updates:
       module_a: 
