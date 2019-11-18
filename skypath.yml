@@ -115,6 +115,10 @@ paths:
             application/json:
               schema:
                 $ref: 'types.yml#/RefreshTokenResponse'
+        '401':
+          $ref: 'responses.yml#/Unauthorized'   
+        '404':
+          $ref: 'responses.yml#/NotFound'       
       requestBody:
         description: JWT refresh token 
         required: true
@@ -229,6 +233,10 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          $ref: 'responses.yml#/Unauthorized'   
+        '404':
+          $ref: 'responses.yml#/NotFound'       
 
     post:
       tags:
@@ -241,6 +249,11 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          $ref: 'responses.yml#/Unauthorized'   
+        '404':
+          $ref: 'responses.yml#/NotFound'       
+
       requestBody:
         description: The objects to send from client to server with what changed 
         content:
