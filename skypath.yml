@@ -111,15 +111,15 @@ paths:
         When the client first logs in it gets a JWT token and a refresh token, the JWT token has an expiry of 3 hours, when the client gets an error or even before 
         the token expires, the client needs to call this route to refresh and get new JWT token. 
       responses:
-        '200':
+        200:
           description: OK
           content:
             application/json:
               schema:
                 $ref: 'types.yml#/RefreshTokenResponse'
-        '401':
+        401:
           $ref: 'responses.yml#/Unauthorized'   
-        '404':
+        404:
           $ref: 'responses.yml#/NotFound'       
 
       requestBody:
