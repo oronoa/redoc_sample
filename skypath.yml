@@ -66,7 +66,7 @@ paths:
         - general
       operationId: hello
       description: |
-        Gets basic information about SkyPath server version and minimal client version needed, if the app version is lower than the minimal 
+        Gets basic information about Skypath server version and minimal client version needed, if the app version is lower than the minimal 
         allowed app version the client needs to not allow login and suggest an immidiate upgrade for the user.
       responses:
         200:

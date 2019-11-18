@@ -75,7 +75,7 @@ LoginResponse:
       example : 'R9S2BOVpRx6H9_0lZWKqRg93kgYweR3kN3OZonHQY4w'
     message:
       type: string
-      example: 'Hello from SkyPath server'
+      example: 'Hello from Skypath server'
     user_id: 
       type: string
       example : 'ym0565666'
