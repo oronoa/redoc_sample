@@ -247,12 +247,16 @@ paths:
 
       responses:
         200:
-          description: OK
+          description: Updates to the map since and including skypath tick
+          content:
+            application/json:
+              schema:
+                $ref: 'types.yml#/UpdateResponse'
         401:
-          description: The refresh token is not authorized 
+          description: User not authorized to see updates 
           $ref: 'responses.yml#/Unauthorized'   
         404:
-          description: The specified resource was not found
+          description: Not found
           $ref: 'responses.yml#/NotFound'       
 
     post:
@@ -265,7 +269,7 @@ paths:
 
       responses:
         200:
-          description: OK
+          description: OK - Updates were recived by the server
         401:
           description: The refresh token is not authorized 
           $ref: 'responses.yml#/Unauthorized'   
