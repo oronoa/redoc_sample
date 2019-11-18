@@ -147,13 +147,13 @@ paths:
     get:
       tags:
         - map
-      security:
-        - bearerAuth: []         
       operationId: initial
       description: | 
-        Get an initial world view of the turbulence and traffic of all aircraft, client or app should call this when initializing of after 
-        a period of no connectivity (5 minutes) to re-init it's internal memory to the current state. When the is connectivity the app should 
-        call the /update routes to get only the diff from the last update.
+        Get an initial world view of the turbulence and traffic of all aircrafts according 
+        to the user permissions, client or app should call this when initializing of after 
+        a period of no connectivity (max 5 minutes) to re-init it's internal memory to the 
+        current state. When network connectivity is stable the app should call the /update 
+        routes to get only the diff from the last update every minute or so.
       parameters:
         - in: path
           name: company_id
@@ -187,13 +187,13 @@ paths:
           description: Delivery token expiration as recived in /delivery_token_expiry
       responses:
         200:
-          description: A valid list of system supported aircraft types
+          description: OK - returns the world map turbulences and traffic for the last 6 hours
           content:
             application/json:
               schema:
                 $ref: 'types.yml#/InitialResponse'
         401:
-          description: The refresh token is not authorized 
+          description: User not authorized or wrong token
           $ref: 'responses.yml#/Unauthorized'   
         404:
           description: The specified resource was not found
