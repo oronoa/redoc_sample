@@ -105,9 +105,19 @@ InitialResponse:
       type: object
   example:
     updates:
-      module_a: 
-        property_a: x1 
-        size: 8
-      module_b: 
-        property_a: 2
-        ability: 67
+      turbulences: 
+        -
+          alt: 34
+          lon: 45
+          lat: 45
+          sev: 4
+        -
+          alt: 35
+          lon: 67
+          lat: 44
+          sev: 3
+      traffic: 
+        -
+          alt: 35
+          lon: 67
+          lat: 44          
