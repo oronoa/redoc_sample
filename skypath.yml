@@ -193,10 +193,10 @@ paths:
               schema:
                 $ref: 'types.yml#/InitialResponse'
         401:
-          description: User not authorized or wrong token
+          description: User not authorized or wrong delivery token
           $ref: 'responses.yml#/Unauthorized'   
         404:
-          description: The specified resource was not found
+          description: Company or Delivery token not found 
           $ref: 'responses.yml#/NotFound'       
 
   /updates/{company_id}/{aircraft_type}/{skypath_tick}/{delivery_token}/{delivery_token_expiry}:
@@ -204,7 +204,10 @@ paths:
       tags:
         - map
       operationId: updates
-      description: get updates since "skypath tick" to client
+      description: |
+        Returns updates since and including "skypath tick" to client, client calls this route 
+        every minute or so to stay in sync with the system updates of traffic positions and 
+        turbulence data
       security:
         - bearerAuth: [pilot]         
       parameters:
@@ -263,7 +266,8 @@ paths:
       tags:
         - map
       operationId: updates
-      description: post updates by client of aircraft position and new turbulence discovered to server
+      description: | 
+        Client POSTs updates of aircraft position and new turbulence discovered to server every minute or so
       security:
         - bearerAuth: [pilot]         
 
@@ -271,10 +275,10 @@ paths:
         200:
           description: OK - Updates were recived by the server
         401:
-          description: The refresh token is not authorized 
+          description: User not authorized to publish updates
           $ref: 'responses.yml#/Unauthorized'   
         404:
-          description: The specified resource was not found
+          description: User not found
           $ref: 'responses.yml#/NotFound'       
 
       requestBody:
