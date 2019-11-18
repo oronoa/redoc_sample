@@ -1,5 +1,5 @@
 version: 1.1.2
-title: Yamasee Skypath - Turbulence and Weather Management in Commercial Aviation API documentation 
+title: Yamasee Skypath - Turbulence and Weather Management in Commercial Aviation - API documentation 
 description: |
   Skypath by Yamasee is a unique service that can help airline pilots avoid clear air 
   turbulence. This is the API documentation for interacting with the Skypath server 
