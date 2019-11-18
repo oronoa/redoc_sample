@@ -56,6 +56,7 @@ paths:
         '401':
           $ref: 'responses.yml#/Unauthorized'   
         '404':
+          description: The specified resource was not found
           $ref: 'responses.yml#/NotFound'       
 
   /hello:
@@ -100,6 +101,7 @@ paths:
         '401':
           $ref: 'responses.yml#/Unauthorized'   
         '404':
+          description: The specified resource was not found
           $ref: 'responses.yml#/NotFound'       
 
   /refresh_token:
@@ -187,6 +189,7 @@ paths:
         '401':
           $ref: 'responses.yml#/Unauthorized'   
         '404':
+          description: The specified resource was not found
           $ref: 'responses.yml#/NotFound'       
 
   /updates/{company_id}/{aircraft_type}/{skypath_tick}/{delivery_token}/{delivery_token_expiry}:
@@ -241,6 +244,7 @@ paths:
         '401':
           $ref: 'responses.yml#/Unauthorized'   
         '404':
+          description: The specified resource was not found
           $ref: 'responses.yml#/NotFound'       
 
     post:
@@ -257,6 +261,7 @@ paths:
         '401':
           $ref: 'responses.yml#/Unauthorized'   
         '404':
+          description: The specified resource was not found
           $ref: 'responses.yml#/NotFound'       
 
       requestBody:
