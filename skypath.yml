@@ -187,7 +187,11 @@ paths:
           description: Delivery token expiration as recived in /delivery_token_expiry
       responses:
         200:
-          description: OK
+          description: A valid list of system supported aircraft types
+          content:
+            application/json:
+              schema:
+                $ref: 'types.yml#/InitialResponse'
         401:
           description: The refresh token is not authorized 
           $ref: 'responses.yml#/Unauthorized'   

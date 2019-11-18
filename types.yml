@@ -21,12 +21,13 @@ SettingsResponse:
     modules:
       type: object 
   example:   
-    module_a: 
-      property_a: x1 
-      size: 8
-    module_b: 
-      property_a: 2
-      ability: 67
+    modules:
+      module_a: 
+        property_a: x1 
+        size: 8
+      module_b: 
+        property_a: 2
+        ability: 67
 
 RefreshTokenResponse:
   type: object
@@ -96,3 +97,18 @@ LoginResponse:
     email:
       type: string
       example: 'john.baker@skypathapi.com'
+
+InitialResponse:
+  type: object
+  properties:
+    updates: 
+      type: object
+      required: true
+  example:
+    updates:
+      module_a: 
+        property_a: x1 
+        size: 8
+      module_b: 
+        property_a: 2
+        ability: 67
