@@ -29,7 +29,6 @@ SettingsResponse:
       ability: 67
 
 RefreshTokenResponse:
-  description: Refresh token response
   type: object
   required:
     - new_token
@@ -44,7 +43,6 @@ RefreshTokenResponse:
       type: string
     
 HelloResponse:
-  description: Response for hello
   type: object
   required:
     - ver
@@ -66,7 +64,6 @@ HelloResponse:
 
 
 LoginResponse:
-  description: Response for login
   type: object
   properties:
     token:
