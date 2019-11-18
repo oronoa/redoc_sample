@@ -10,17 +10,19 @@ servers:
     
 tags:
   - name: general
-    description: General routes to query the server version etc
+    description: These routes are public and return general information about the system like supported aircraft types and server / client recommended versions
   - name: auth
-    description: Login with API key, Refresh JWT tokens, everything to do with authentication
+    description: These routes allow authentication, Login with API key, Refresh JWT tokens
+  - name: settings
+    description: These routes allow getting the user recommended settings
   - name: map
-    description: Everything to do with map view of aircraft positions and turbulence reports
+    description: These routes deal with getting and updating the logical map view of aircraft positions and turbulence reports
 
 paths:
   /aircraft_types:
     get:
       operationId: aircraft_types
-      description: Get list of system supported aircraft types
+      description: Returns a list of system supported aircraft types
       tags:
         - general
       responses:
@@ -30,34 +32,27 @@ paths:
             application/json:
               schema:
                 $ref: 'types.yml#/AircraftTypesResponse'
-        401:
-          description: Unauthorized
-          $ref: 'responses.yml#/Unauthorized'   
-        404:
-          description: The specified resource was not found
-          $ref: 'responses.yml#/NotFound'       
-
 
   /settings:
     get:
       operationId: settings
-      description: Get the initial recommanded settings for this user
+      description: Get the initial recommended settings for this user
       tags:
-        - general
+        - settings
       security:
         - bearerAuth: []         
       responses:
         200:
-          description: A valid list of system supported aircraft types
+          description: An object with the user's settings for each module
           content:
             application/json:
               schema:
                 $ref: 'types.yml#/SettingsResponse'
         401:
-          description: Unauthorized
+          description: User unauthorized to see settings
           $ref: 'responses.yml#/Unauthorized'   
         404:
-          description: The specified resource was not found
+          description: User settings not found 
           $ref: 'responses.yml#/NotFound'       
 
   /hello:
@@ -66,8 +61,9 @@ paths:
         - general
       operationId: hello
       description: |
-        Gets basic information about Skypath server version and minimal client version needed, if the app version is lower than the minimal 
-        allowed app version the client needs to not allow login and suggest an immidiate upgrade for the user.
+        Gets basic information about Skypath server version and minimal client version needed, 
+        if the app version is lower than the minimal allowed app version the client needs to
+        block logging-in and suggest the user to upgrade the Skypath app version on the device.
       responses:
         200:
           description: OK
@@ -81,8 +77,10 @@ paths:
         - auth
       operationId: login
       description: |
-        Login to the server and get a JWT token, this allows partners to exchange their API_KEY
-        and user_id for a JWT token which can be user in further calls
+        Login to the server and get a authorization JWT token, this allows partners to 
+        exchange their API_KEY and customer user_id for a JWT token which can be user in 
+        further requests. All requests that need this token are marked as such in this
+        documentation
       security:
         - apiKey : []
       requestBody:
@@ -93,17 +91,17 @@ paths:
               $ref: '#/components/schemas/LoginRequest'
       responses:
         200:
-          description: OK
+          description: OK - User was authenticated
           content:
             application/json:
               schema:
                 $ref: 'types.yml#/LoginResponse'
                 
         401:
-          description: The refresh token is not authorized 
+          description: User password wrong or user doesn't have permissions to login
           $ref: 'responses.yml#/Unauthorized'   
         404:
-          description: The specified resource was not found
+          description: User not found
           $ref: 'responses.yml#/NotFound'       
 
   /refresh_token:
@@ -112,20 +110,22 @@ paths:
       tags:
         - auth
       description: |
-        When the client first logs in it gets a JWT token and a refresh token, the JWT token has an expiry of 3 hours, when the client gets an error or even before 
-        the token expires, the client needs to call this route to refresh and get new JWT token. 
+        Each recived JWT token when using login has an expiry time of 3 hours, when the client
+        gets an error the token expired or even before the event of the token expiring, 
+        the client can call this route with the correct refresh token recived on the login route
+        and get new fresh JWT token. 
       responses:
         200:
-          description: OK
+          description: OK - new token generated 
           content:
             application/json:
               schema:
                 $ref: 'types.yml#/RefreshTokenResponse'
         401:
-          description: The refresh token is not authorized 
+          description: The refresh token is not authorized or invalid
           $ref: 'responses.yml#/Unauthorized'   
         404:
-          description: The refresh token was not found
+          description: User or refresh token not found 
           $ref: 'responses.yml#/NotFound'       
 
       requestBody:
@@ -140,7 +140,7 @@ paths:
                 properties:
                   token:
                     type: string
-                    description: The refresh token client got upon login
+                    description: The refresh token the client recived on login
 
 
   /initial/{company_id}/{aircraft_type}/{hours}/{delivery_token}/{delivery_token_expiry}:
