@@ -101,9 +101,12 @@ LoginResponse:
 InitialResponse:
   type: object
   properties:
+    skypath_tick:
+      type: integer
     updates: 
       type: object
   example:
+    skypath_tick: 4567
     updates:
       turbulences: 
         -
