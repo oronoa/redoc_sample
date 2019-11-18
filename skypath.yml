@@ -118,8 +118,10 @@ paths:
               schema:
                 $ref: 'types.yml#/RefreshTokenResponse'
         401:
+          description: The refresh token is not authorized 
           $ref: 'responses.yml#/Unauthorized'   
         404:
+          description: The refresh token was not found
           $ref: 'responses.yml#/NotFound'       
 
       requestBody:
