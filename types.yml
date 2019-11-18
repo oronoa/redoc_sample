@@ -129,3 +129,35 @@ InitialResponse:
           lng: -38.32425758432409
           speed: 269.04998779296875
           ts: 1574057471
+
+UpdateResponse:
+  type: object
+  properties:
+    skypath_tick:
+      type: integer
+    updates: 
+      type: object
+  example:
+    skypath_tick: 4567
+    updates:
+      turbulences: 
+        -
+          alt: 34
+          tileX: 1020
+          tileY: 681
+          sev: 2
+          ts: 1574057162
+        -
+          alt: 35
+          tileX: 1019
+          tileY: 680
+          sev: 1
+          ts: 1574057163
+      traffic: 
+        -
+          alt: 24695.00122597656
+          hdg: 235.8984375
+          lat: 59.61784533711745
+          lng: -38.32425758432409
+          speed: 269.04998779296875
+          ts: 1574057471
