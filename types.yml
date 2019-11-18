@@ -20,7 +20,13 @@ SettingsResponse:
   properties:
     modules:
       type: object 
-
+    example:   
+      algorithm: 
+        type: x1 
+        size: 8
+      updates: 
+        factor: 2
+        ability: 67
 
 HelloResponse:
   description: Response for hello
