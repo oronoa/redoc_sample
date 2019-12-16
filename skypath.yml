@@ -93,8 +93,7 @@ paths:
               schema:
                 $ref: 'types.yml#/SettingsResponse'
         401:
-          description: User unauthorized to see settings
-          $ref: 'responses.yml#/Unauthorized'   
+          $ref: 'responses.yml#/UnauthorizedSettings'   
         404:
           description: User settings not found 
           $ref: 'responses.yml#/NotFound'       
@@ -140,7 +139,6 @@ paths:
             application/json:
               schema:
                 $ref: 'types.yml#/LoginResponse'
-                
         401:
           description: User password wrong or user doesn't have permissions to login
           $ref: 'responses.yml#/Unauthorized'   
