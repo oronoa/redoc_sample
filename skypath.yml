@@ -144,7 +144,7 @@ paths:
     post:
       tags:
         - auth
-      operationId: login
+      operationId: partner_login
       description: |
         Login to the server and get a authorization JWT token, this allows partners to 
         exchange their API_KEY and customer user_id for a JWT token which can be user in 
