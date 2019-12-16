@@ -9,6 +9,8 @@ servers:
     description: Production Server
     
 tags:
+  - name: registration
+    description: These routes are public and return user information for new users
   - name: general
     description: These routes are public and return general information about the system like supported aircraft types and server / client recommended versions
   - name: auth
@@ -19,6 +21,47 @@ tags:
     description: These routes deal with getting and updating the logical map view of aircraft positions and turbulence reports
 
 paths:
+  /is_new_user/{user_id_or_email}:
+    get:
+      operationId: is_new_user
+      description: Returns if user is a fresh created user which never used the system
+      tags:
+        - registration
+      responses:
+        200:
+          description: A response that describes fresh user status
+          content:
+            application/json:
+              schema:
+                $ref: 'types.yml#/FreshUserResponse'
+        404:
+          description: User not found
+          $ref: 'responses.yml#/NotFound'       
+
+  /set_user_profile:
+    post:
+      tags:
+        - registration
+      operationId: set_user_profile
+      description: |
+        Client can set user profile like password and name for fresh users
+      requestBody:
+        description: User profile params
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserProfileUpdateRequest'
+      responses:
+        200:
+          description: OK - Updates were recived by the server
+        401:
+          description: User is not a fresh user
+          $ref: 'responses.yml#/Unauthorized'   
+        404:
+          description: User not found
+          $ref: 'responses.yml#/NotFound'       
+
+
   /aircraft_types:
     get:
       operationId: aircraft_types
@@ -335,6 +378,16 @@ components:
       properties:
         user_id:
           type: string
+
+    UserProfileUpdateRequest:
+      description: Body for user profile update request
+      type: object
+      required:
+        - password
+      properties:
+        password:
+          type: string
+
 
     UpdateRequestBody:
       description: Update request body
