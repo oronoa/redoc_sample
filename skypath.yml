@@ -38,13 +38,14 @@ paths:
           description: User not found
           $ref: 'responses.yml#/NotFound'       
 
-  /set_user_profile:
+  /set_user_profile/{user_id_or_email}:
     post:
       tags:
         - registration
       operationId: set_user_profile
       description: |
-        Client can set user profile like password and name for fresh users
+        Client can set user profile like password and name for fresh users, if user is not a fresh user 
+        the operation will fail with not authorized code.
       requestBody:
         description: User profile params
         content:
