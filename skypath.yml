@@ -44,7 +44,7 @@ paths:
         - registration
       operationId: set_user_profile
       description: |
-        Client can set user profile like password and name for fresh users, if user is not a fresh user 
+        Client can set user profile like password and other future properties for fresh users, if user is not a fresh user 
         the operation will fail with not authorized code.
       requestBody:
         description: User profile params
