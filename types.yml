@@ -148,6 +148,7 @@ InitialResponse:
           ts: 1574057163
       traffic: 
         -
+          uuid: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9'
           alt: 24695.00122597656
           hdg: 235.8984375
           lat: 59.61784533711745
@@ -180,6 +181,7 @@ UpdateResponse:
           ts: 1574057163
       traffic: 
         -
+          uuid: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9'
           alt: 24695.00122597656
           hdg: 235.8984375
           lat: 59.61784533711745
