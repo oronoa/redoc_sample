@@ -35,8 +35,7 @@ paths:
               schema:
                 $ref: 'types.yml#/FreshUserResponse'
         404:
-          description: User not found
-          $ref: 'responses.yml#/NotFound'       
+          $ref: 'responses.yml#/UserNotFound'       
 
   /set_user_profile/{user_id_or_email}:
     post:
@@ -56,11 +55,9 @@ paths:
         200:
           description: OK - Updates were recived by the server
         401:
-          description: User is not a fresh user so can't write to it's profile without auth
-          $ref: 'responses.yml#/Unauthorized'   
+          $ref: 'responses.yml#/UnauthorizedFresh'   
         404:
-          description: User not found
-          $ref: 'responses.yml#/NotFound'       
+          $ref: 'responses.yml#/UserNotFound'       
 
 
   /aircraft_types:
@@ -95,7 +92,6 @@ paths:
         401:
           $ref: 'responses.yml#/UnauthorizedSettings'   
         404:
-          description: User settings not found 
           $ref: 'responses.yml#/NotFound'       
 
   /hello:
@@ -140,11 +136,9 @@ paths:
               schema:
                 $ref: 'types.yml#/LoginResponse'
         401:
-          description: User password wrong or user doesn't have permissions to login
           $ref: 'responses.yml#/Unauthorized'   
         404:
-          description: User not found
-          $ref: 'responses.yml#/NotFound'       
+          $ref: 'responses.yml#/UserNotFound'       
 
   /refresh_token:
     post:
@@ -164,10 +158,8 @@ paths:
               schema:
                 $ref: 'types.yml#/RefreshTokenResponse'
         401:
-          description: The refresh token is not authorized or invalid
-          $ref: 'responses.yml#/Unauthorized'   
+          $ref: 'responses.yml#/InvalidRefreshToken'   
         404:
-          description: User or refresh token not found 
           $ref: 'responses.yml#/NotFound'       
 
       requestBody:
@@ -201,11 +193,10 @@ paths:
               schema:
                 $ref: 'types.yml#/DeliveryKeyResponse'
         401:
-          description: User not authorized or wrong delivery token
           $ref: 'responses.yml#/Unauthorized'   
         404:
-          description: Company or Delivery token not found 
           $ref: 'responses.yml#/NotFound'       
+
   /initial/{company_id}/{aircraft_type}/{hours}/{delivery_token}/{delivery_token_expiry}:
     get:
       tags:
@@ -256,10 +247,8 @@ paths:
               schema:
                 $ref: 'types.yml#/InitialResponse'
         401:
-          description: User not authorized or wrong delivery token
           $ref: 'responses.yml#/Unauthorized'   
         404:
-          description: Company or Delivery token not found 
           $ref: 'responses.yml#/NotFound'       
 
   /updates/{company_id}/{aircraft_type}/{skypath_tick}/{delivery_token}/{delivery_token_expiry}:
@@ -319,10 +308,8 @@ paths:
               schema:
                 $ref: 'types.yml#/UpdateResponse'
         401:
-          description: User not authorized to see updates 
           $ref: 'responses.yml#/Unauthorized'   
         404:
-          description: Not found
           $ref: 'responses.yml#/NotFound'       
 
     post:
@@ -338,10 +325,8 @@ paths:
         200:
           description: OK - Updates were recived by the server
         401:
-          description: User not authorized to publish updates
           $ref: 'responses.yml#/Unauthorized'   
         404:
-          description: User not found
           $ref: 'responses.yml#/NotFound'       
 
       requestBody:

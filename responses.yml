@@ -1,11 +1,26 @@
 NotFound:
+    description: Requested resource not found
+    content:
+      application/json:
+        schema:
+          $ref: '#/Error'
+
+UserNotFound:
+    description: Requested resource not found
+    content:
+      application/json:
+        schema:
+          $ref: '#/Error'
+
+InvalidRefreshToken:
+    description: The refresh token is not authorized or invalid
     content:
       application/json:
         schema:
           $ref: '#/Error'
 
 Unauthorized:
-    description: User unauthorized to do operation
+    description: User password wrong or user doesn't have permissions to login
     content:
       application/json:
         schema:
@@ -18,7 +33,14 @@ UnauthorizedSettings:
         schema:
           $ref: '#/Error'
 
+UnauthorizedFresh:
+    description: User is not a fresh user so can't write to it's profile without auth
+    content:
+      application/json:
+        schema:
+          $ref: '#/Error'
 
+         
 Error:
   type: object
   required:
