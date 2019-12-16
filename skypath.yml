@@ -110,7 +110,37 @@ paths:
             application/json:
               schema:
                 $ref: 'types.yml#/HelloResponse'
+  
   /login:
+    post:
+      tags:
+        - auth
+      operationId: login
+      description: |
+        Login to the server and get a authorization JWT token, this allows user to 
+        exchange their username / email and password for a JWT token which can be user in 
+        further requests. All requests that need this token are marked as such in this
+        documentation
+      requestBody:
+        description: Login params
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        200:
+          description: OK - User was authenticated
+          content:
+            application/json:
+              schema:
+                $ref: 'types.yml#/LoginResponse'
+        401:
+          $ref: 'responses.yml#/Unauthorized'   
+        404:
+          $ref: 'responses.yml#/UserNotFound'       
+
+
+  /partner_login:
     post:
       tags:
         - auth
@@ -127,7 +157,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LoginRequest'
+              $ref: '#/components/schemas/PartnerLoginRequest'
       responses:
         200:
           description: OK - User was authenticated
@@ -354,13 +384,25 @@ components:
   
   schemas:
 
-    LoginRequest:
-      description: Body for login request
+    PartnerLoginRequest:
+      description: Body for partner login request
       type: object
       required:
         - user_id
       properties:
         user_id:
+          type: string
+
+    LoginRequest:
+      description: Body for login request
+      type: object
+      required:
+        - user_id
+        - password
+      properties:
+        user_id:
+          type: string
+        password:
           type: string
 
     UserProfileUpdateRequest:
