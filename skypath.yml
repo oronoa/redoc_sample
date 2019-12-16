@@ -56,7 +56,7 @@ paths:
         200:
           description: OK - Updates were recived by the server
         401:
-          description: User is not a fresh user
+          description: User is not a fresh user so can't write to it's profile without auth
           $ref: 'responses.yml#/Unauthorized'   
         404:
           description: User not found
