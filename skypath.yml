@@ -37,7 +37,7 @@ paths:
         404:
           $ref: 'responses.yml#/UserNotFound'       
 
-  /set_user_profile/{user_id_or_email}:
+  /set_user_profile:
     post:
       tags:
         - registration
@@ -58,6 +58,8 @@ paths:
           $ref: 'responses.yml#/UnauthorizedAlreadyInit'   
         404:
           $ref: 'responses.yml#/UserNotFound'       
+        500:
+          $ref: 'responses.yml#/InternalServerError'       
 
 
   /aircraft_types:
@@ -412,9 +414,12 @@ components:
       description: Body for user profile update request
       type: object
       required:
+        - username_or_email
         - password
       properties:
         password:
+          type: string
+        username_or_email:
           type: string
 
 

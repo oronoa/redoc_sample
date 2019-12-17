@@ -40,7 +40,14 @@ UnauthorizedAlreadyInit:
         schema:
           $ref: '#/Error'
 
-         
+InternalServerError:
+    description: Internal server error, see message and code for more info
+    content:
+      application/json:
+        schema:
+          $ref: '#/Error'
+
+
 Error:
   type: object
   required:
