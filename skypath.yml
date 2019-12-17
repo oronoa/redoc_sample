@@ -171,6 +171,8 @@ paths:
           $ref: 'responses.yml#/Unauthorized'   
         404:
           $ref: 'responses.yml#/UserNotFound'       
+        500:
+          $ref: 'responses.yml#/InternalServerError'     
 
   /refresh_token:
     post:
@@ -193,6 +195,8 @@ paths:
           $ref: 'responses.yml#/InvalidRefreshToken'   
         404:
           $ref: 'responses.yml#/NotFound'       
+        500:
+          $ref: 'responses.yml#/InternalServerError'     
 
       requestBody:
         description: JWT refresh token 
@@ -228,6 +232,8 @@ paths:
           $ref: 'responses.yml#/Unauthorized'   
         404:
           $ref: 'responses.yml#/NotFound'       
+        500:
+          $ref: 'responses.yml#/InternalServerError'     
 
   /initial/{company_id}/{aircraft_type}/{hours}/{delivery_token}/{delivery_token_expiry}:
     get:
@@ -282,6 +288,8 @@ paths:
           $ref: 'responses.yml#/Unauthorized'   
         404:
           $ref: 'responses.yml#/NotFound'       
+        500:
+          $ref: 'responses.yml#/InternalServerError'     
 
   /updates/{company_id}/{aircraft_type}/{skypath_tick}/{delivery_token}/{delivery_token_expiry}:
     get:
@@ -343,6 +351,8 @@ paths:
           $ref: 'responses.yml#/Unauthorized'   
         404:
           $ref: 'responses.yml#/NotFound'       
+        500:
+          $ref: 'responses.yml#/InternalServerError'     
 
     post:
       tags:
@@ -356,10 +366,14 @@ paths:
       responses:
         200:
           description: OK - Updates were recived by the server
+        207:
+          $ref: 'responses.yml#/PartialUpdate'   
         401:
           $ref: 'responses.yml#/Unauthorized'   
         404:
           $ref: 'responses.yml#/NotFound'       
+        500:
+          $ref: 'responses.yml#/InternalServerError'     
 
       requestBody:
         description: The objects to send from client to server with what changed 
