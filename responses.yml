@@ -20,7 +20,7 @@ InvalidRefreshToken:
           $ref: '#/Error'
 
 Unauthorized:
-    description: User password wrong or user doesn't have permissions to login
+    description: User password or jwt token wrong / expired or user doesn't have permissions to login
     content:
       application/json:
         schema:
