@@ -15,14 +15,14 @@ AircraftTypesResponse:
     - id : "A320"
       title : AirBus 320
 
-FreshUserResponse:
+UserStatusResponse:
   type: object
   required:
-    - fresh
+    - initialized
   properties:
     fresh:
-      description: Is this user a fresh user ?
-      example: true
+      description: Is this user initialized ?
+      example: false
       type: boolean
 
 SettingsResponse:

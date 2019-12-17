@@ -24,16 +24,16 @@ paths:
   /is_new_user/{user_id_or_email}:
     get:
       operationId: is_new_user
-      description: Returns if user is a fresh created user which never used the system
+      description: Returns if user is not initialized and never used the system
       tags:
         - registration
       responses:
         200:
-          description: A response that describes fresh user status
+          description: A response that describes user status
           content:
             application/json:
               schema:
-                $ref: 'types.yml#/FreshUserResponse'
+                $ref: 'types.yml#/UserStatusResponse'
         404:
           $ref: 'responses.yml#/UserNotFound'       
 
@@ -43,8 +43,8 @@ paths:
         - registration
       operationId: set_user_profile
       description: |
-        Client can set user profile like password and other future properties for fresh users, if user is not a fresh user 
-        the operation will fail with not authorized code.
+        Client can set user profile like password and other future properties for non init users, 
+        if user is not a new user the operation will fail with not authorized code.
       requestBody:
         description: User profile params
         content:
@@ -55,7 +55,7 @@ paths:
         200:
           description: OK - Updates were recived by the server
         401:
-          $ref: 'responses.yml#/UnauthorizedFresh'   
+          $ref: 'responses.yml#/UnauthorizedAlreadyInit'   
         404:
           $ref: 'responses.yml#/UserNotFound'       
 
@@ -389,8 +389,11 @@ components:
       type: object
       required:
         - user_id
+        - company_id
       properties:
         user_id:
+          type: string
+        company_id:
           type: string
 
     LoginRequest:

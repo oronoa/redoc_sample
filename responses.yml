@@ -33,7 +33,7 @@ UnauthorizedSettings:
         schema:
           $ref: '#/Error'
 
-UnauthorizedFresh:
+UnauthorizedAlreadyInit:
     description: User is not a fresh user so can't write to it's profile without auth
     content:
       application/json:
@@ -44,7 +44,6 @@ UnauthorizedFresh:
 Error:
   type: object
   required:
-    - code
     - message
   properties:
     code:
