@@ -47,6 +47,13 @@ InternalServerError:
         schema:
           $ref: '#/Error'
 
+PartialUpdate:
+    description: Some of the update was successful some not see code and message for more details
+    content:
+      application/json:
+        schema:
+          $ref: '#/Error'
+
 
 Error:
   type: object
