@@ -381,6 +381,33 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateRequestBody'
+  /position:
+    post:
+      tags:
+        - map
+      operationId: position
+      description: |  
+        Client POSTs updates of aircraft position, can be used for higher frequency traffic updates on aircraft geo
+      security:
+        - bearerAuth: [pilot]         
+
+      responses:
+        200:
+          description: OK - Updates were recived by the server
+        401:
+          $ref: 'responses.yml#/Unauthorized'   
+        404:
+          $ref: 'responses.yml#/NotFound'       
+        500:
+          $ref: 'responses.yml#/InternalServerError'     
+
+      requestBody:
+        description: The plane position long lat alt and direction
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PositionRequestBody'
+
 
 components:
 
@@ -447,6 +474,14 @@ components:
         turbulences:
           description: Turbulence Events that happened since last update
           $ref: '#/components/schemas/Turbulences'
+        position:
+          description: Position of the aircraft
+          $ref: '#/components/schemas/Position'
+
+    PositionRequestBody:
+      description: Position update request body
+      type: object
+      properties:
         position:
           description: Position of the aircraft
           $ref: '#/components/schemas/Position'
