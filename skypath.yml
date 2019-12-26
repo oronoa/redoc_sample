@@ -21,6 +21,29 @@ tags:
     description: These routes deal with getting and updating the logical map view of aircraft positions and turbulence reports
 
 paths:
+  
+  /forgot_password:
+    post:
+      operationId: is_new_user
+      description: Returns if user is not initialized and never used the system
+      tags:
+        - registration
+      requestBody:
+        description: User id param
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordRequest'
+      responses:
+        200:
+          description: A response that describes user status
+          content:
+            application/json:
+              schema:
+                $ref: 'types.yml#/UserStatusResponse'
+        404:
+          $ref: 'responses.yml#/UserNotFound'    
+
   /is_new_user/{user_id_or_email}:
     get:
       operationId: is_new_user
@@ -422,6 +445,16 @@ components:
       in: header
   
   schemas:
+
+    ForgotPasswordRequest:
+      description: Body for frogot password request
+      type: object
+      required:
+        - user_id
+      properties:
+        user_id:
+          description: user name or email or requesting user
+          type: string
 
     PartnerLoginRequest:
       description: Body for partner login request
