@@ -30,24 +30,15 @@ Position:
       description: position longitude  
       type: number
   example:
-    - uuid: "46087afaeb79d682820fe604bc8a075c"
-      alt: 12
-      tile_x: 1023
-      tile_y: 304
-      speed: 12
-      ts: 1577349257
-      hdg: 209
-      lat: 44.55719190061772
-      lon: 16.962290836610837
-    - uuid: "5439fdg8809d8s09s8d8s9d08s0d80s"
-      alt: 13
-      tile_x: 323
-      tile_y: 804
-      speed: 13
-      ts: 1577349347
-      hdg: 205
-      lat: 42.55719190061772
-      lon: 11.962290836610837
+    uuid: "46087afaeb79d682820fe604bc8a075c"
+    alt: 12
+    tile_x: 1023
+    tile_y: 304
+    speed: 12
+    ts: 1577349257
+    hdg: 209
+    lat: 44.55719190061772
+    lon: 16.962290836610837
 
 PositionsArray:
   type: array
@@ -59,6 +50,8 @@ PositionsResponse:
   properties:
     positions:
       $ref: "#/PositionsArray"
+    other: 
+      type: integer
 
 
 AircraftTypesResponse:
