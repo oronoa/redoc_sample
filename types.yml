@@ -50,9 +50,6 @@ PositionsResponse:
   properties:
     positions:
       $ref: "#/PositionsArray"
-    other: 
-      type: integer
-
 
 AircraftTypesResponse:
   type: array
