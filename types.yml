@@ -1,15 +1,4 @@
 
-PositionsResponse:
-  type: object 
-  items:
-    positions:
-      $ref: "#/PositionsArray"
-
-PositionsArray:
-  type: array
-  items:
-    $ref: "#/PositionResponse"
-
 Position:
   type: object
   properties: 
@@ -50,6 +39,18 @@ Position:
       hdg: 209
       lat: 44.55719190061772
       lon: 16.962290836610837
+
+PositionsArray:
+  type: array
+  items:
+    $ref: "#/Position"
+
+PositionsResponse:
+  type: object 
+  properties:
+    positions:
+      $ref: "#/PositionsArray"
+
 
 AircraftTypesResponse:
   type: array
