@@ -39,6 +39,15 @@ Position:
       hdg: 209
       lat: 44.55719190061772
       lon: 16.962290836610837
+    - uuid: "5439fdg8809d8s09s8d8s9d08s0d80s"
+      alt: 13
+      tile_x: 323
+      tile_y: 804
+      speed: 13
+      ts: 1577349347
+      hdg: 205
+      lat: 42.55719190061772
+      lon: 11.962290836610837
 
 PositionsArray:
   type: array
