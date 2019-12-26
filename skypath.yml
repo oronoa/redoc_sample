@@ -24,10 +24,10 @@ paths:
   
   /forgot_password:
     post:
-      operationId: is_new_user
+      operationId: forgot_password
       description: Returns if user is not initialized and never used the system
       tags:
-        - registration
+        - auth
       requestBody:
         description: User id param
         content:
