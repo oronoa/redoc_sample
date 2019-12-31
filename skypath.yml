@@ -1,6 +1,6 @@
 openapi: "3.0.0"
 info:
-  $ref: info.yml
+  $ref: 'info.yml#/info'
 
 servers:
   - url: https://devserver.yamasee-skypath.com/api
