@@ -22,7 +22,7 @@ tags:
 
 paths:
   
-  /forgot_password:
+  /v2/forgot_password:
     post:
       operationId: forgot_password
       description: Returns if user is not initialized and never used the system
@@ -243,13 +243,13 @@ paths:
                     description: The refresh token the client recived on login
 
 
-  /delivery:
+  /delivery_token:
     get:
       tags:
         - map
       security:
         - bearerAuth: []   
-      operationId: delivery
+      operationId: delivery_token
       description: | 
         The client needs to call this to get a valid CDN delivery key to be able
         to get initial state and periodic updates or the world map
@@ -487,8 +487,10 @@ components:
         - password
       properties:
         user_id:
+          description: user id or email of user that logs in 
           type: string
         password:
+          description: clear text password
           type: string
 
     UserProfileUpdateRequest:
@@ -499,8 +501,10 @@ components:
         - password
       properties:
         password:
+          description: new chosen password
           type: string
         username_or_email:
+          description: user id or email of user that updates his or her profile 
           type: string
 
 
