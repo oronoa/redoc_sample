@@ -24,7 +24,7 @@ paths:
   
   /v2/forgot_password:
     post:
-      operationId: forgot_password
+      operationId: v2/forgot_password
       description: Returns if user is not initialized and never used the system
       tags:
         - auth
