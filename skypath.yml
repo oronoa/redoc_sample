@@ -50,6 +50,13 @@ paths:
       description: Returns if user is not initialized and never used the system
       tags:
         - registration
+      parameters:
+        - in: path
+          name: user_id_or_email
+          schema:
+            type: string
+          required: true
+          description: User id or email for the requested user to check 
       responses:
         200:
           description: A response that describes user status
@@ -240,6 +247,8 @@ paths:
     get:
       tags:
         - map
+      security:
+        - bearerAuth: []   
       operationId: delivery
       description: | 
         The client needs to call this to get a valid CDN delivery key to be able
@@ -324,7 +333,7 @@ paths:
         every minute or so to stay in sync with the system updates of traffic positions and 
         turbulence data
       security:
-        - bearerAuth: [pilot]         
+        - bearerAuth: []         
       parameters:
         - in: path
           name: company_id
@@ -377,6 +386,7 @@ paths:
         500:
           $ref: 'responses.yml#/InternalServerError'     
 
+  /updates/:
     post:
       tags:
         - map
@@ -384,7 +394,7 @@ paths:
       description: | 
         Client POSTs updates of aircraft position and new turbulence discovered to server every minute or so
       security:
-        - bearerAuth: [pilot]         
+        - bearerAuth: []         
 
       responses:
         200:
@@ -404,6 +414,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateRequestBody'
+  
   /positions:
     get:
       tags:
@@ -412,7 +423,7 @@ paths:
       description: |  
         Client get update of all aircrafts positions, can be used for higher frequency traffic updates map if app doesn't support animations or DR positions
       security:
-        - bearerAuth: [pilot]         
+        - bearerAuth: []         
 
       responses:
         200:
