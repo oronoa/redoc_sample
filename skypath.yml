@@ -44,7 +44,7 @@ paths:
         404:
           $ref: 'responses.yml#/UserNotFound'    
 
-  /is_new_user/{user_id_or_email}:
+  /v2/is_new_user/{user_id_or_email}:
     get:
       operationId: is_new_user
       description: Returns if user is not initialized and never used the system
@@ -67,7 +67,7 @@ paths:
         404:
           $ref: 'responses.yml#/UserNotFound'       
 
-  /set_user_profile:
+  /v2/set_user_profile:
     post:
       tags:
         - registration
@@ -92,7 +92,7 @@ paths:
           $ref: 'responses.yml#/InternalServerError'       
 
 
-  /aircraft_types:
+  /v2/aircraft_types:
     get:
       operationId: aircraft_types
       description: Returns a list of system supported aircraft types
@@ -106,7 +106,7 @@ paths:
               schema:
                 $ref: 'types.yml#/AircraftTypesResponse'
 
-  /settings:
+  /v2/settings:
     get:
       operationId: settings
       description: Get the initial recommended settings for this user
@@ -126,7 +126,7 @@ paths:
         404:
           $ref: 'responses.yml#/NotFound'       
 
-  /hello:
+  /v2/hello:
     get:
       tags:
         - general
@@ -143,7 +143,7 @@ paths:
               schema:
                 $ref: 'types.yml#/HelloResponse'
   
-  /login:
+  /v2/login:
     post:
       tags:
         - auth
@@ -172,7 +172,7 @@ paths:
           $ref: 'responses.yml#/UserNotFound'       
 
 
-  /partner_login:
+  /v2/partner_login:
     post:
       tags:
         - auth
@@ -204,7 +204,7 @@ paths:
         500:
           $ref: 'responses.yml#/InternalServerError'     
 
-  /refresh_token:
+  /v2/refresh_token:
     post:
       operationId: refresh
       tags:
@@ -243,7 +243,7 @@ paths:
                     description: The refresh token the client recived on login
 
 
-  /delivery_token:
+  /v2/delivery_token:
     get:
       tags:
         - map
@@ -267,7 +267,7 @@ paths:
         500:
           $ref: 'responses.yml#/InternalServerError'     
 
-  /initial/{company_id}/{aircraft_type}/{hours}/{delivery_token}/{delivery_token_expiry}:
+  /v2/initial/{company_id}/{aircraft_type}/{hours}/{delivery_token}/{delivery_token_expiry}:
     get:
       tags:
         - map
@@ -323,7 +323,7 @@ paths:
         500:
           $ref: 'responses.yml#/InternalServerError'     
 
-  /updates/{company_id}/{aircraft_type}/{skypath_tick}/{delivery_token}/{delivery_token_expiry}:
+  /v2/updates/{company_id}/{aircraft_type}/{skypath_tick}/{delivery_token}/{delivery_token_expiry}:
     get:
       tags:
         - map
@@ -386,7 +386,7 @@ paths:
         500:
           $ref: 'responses.yml#/InternalServerError'     
 
-  /updates/:
+  /v2/updates/:
     post:
       tags:
         - map
@@ -415,7 +415,7 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateRequestBody'
   
-  /positions:
+  /v2/positions:
     get:
       tags:
         - map
