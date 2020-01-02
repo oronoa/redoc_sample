@@ -24,7 +24,8 @@ paths:
   
   /v2/forgot_password:
     post:
-      description: Returns if user is not initialized and never used the system
+      operationId: forgot_password
+      description: Used to request a password reset link for a user
       tags:
         - auth
       requestBody:
@@ -236,7 +237,11 @@ paths:
                 type: object
                 required:
                   - token
+                  - user_id
                 properties:
+                  user_id:
+                    type: string
+                    description: The user_id or the requesting user
                   token:
                     type: string
                     description: The refresh token the client recived on login
