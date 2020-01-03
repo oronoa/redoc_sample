@@ -1,0 +1,903 @@
+openapi: 3.0.0
+info:
+  version: 1.1.3
+  title: Yamasee Skypath - Turbulence and Weather Management in Commercial Aviation - API documentation
+  description: |
+    Skypath by Yamasee Inc is a unique service that can help airline pilots avoid clear air 
+    turbulence. This is the API documentation for interacting with the Skypath server 
+    for application developers. It describes the Skypath turbulence avoidance server 
+    Rest API in OpenAPI 3.0 specification. 
+    You will need a partner API_KEY to be able to login to the system and get authentication 
+    tokens valid for the different REST operations
+  termsOfService: 'https://yamasee.global/terms/'
+  contact:
+    name: Skypath API Team
+    email: info@yamasee.global
+    url: 'https://yamasee.global/api'
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+  x-logo:
+    url: 'https://github.com/oronoa/redoc_sample/raw/master/logo.png'
+    backgroundColor: '#FFFFFF'
+    altText: Skypath logo
+servers:
+  - url: 'https://devserver.yamasee-skypath.com'
+    description: Development Server
+  - url: 'https://server.yamasee-skypath.com'
+    description: Production Server
+tags:
+  - name: registration
+    description: These routes are public and return user information for new users
+  - name: general
+    description: These routes are public and return general information about the system like supported aircraft types and server / client recommended versions
+  - name: auth
+    description: 'These routes allow authentication, Login with API key, Refresh JWT tokens'
+  - name: settings
+    description: These routes allow getting the user recommended settings
+  - name: map
+    description: These routes deal with getting and updating the logical map view of aircraft positions and turbulence reports
+paths:
+  /v2/forgot_password:
+    post:
+      operationId: forgot_password
+      description: Used to request a password reset link for a user
+      tags:
+        - auth
+      requestBody:
+        description: User id param
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordRequest'
+      responses:
+        '200':
+          description: A response that describes user status
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - initialized
+                properties:
+                  fresh:
+                    description: Is this user initialized ?
+                    example: false
+                    type: boolean
+        '404':
+          description: Requested resource not found
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  message:
+                    type: string
+  '/v2/is_new_user/{user_id_or_email}':
+    get:
+      operationId: is_new_user
+      description: Returns if user is not initialized and never used the system
+      tags:
+        - registration
+      parameters:
+        - in: path
+          name: user_id_or_email
+          schema:
+            type: string
+          required: true
+          description: User id or email for the requested user to check
+      responses:
+        '200':
+          description: A response that describes user status
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1v2~1forgot_password/post/responses/200/content/application~1json/schema'
+                x-miro: 'types.yml#/UserStatusResponse'
+        '404':
+          $ref: '#/paths/~1v2~1forgot_password/post/responses/404'
+          x-miro: 'responses.yml#/UserNotFound'
+  /v2/set_user_profile:
+    post:
+      tags:
+        - registration
+      operationId: set_user_profile
+      description: |
+        Client can set user profile like password and other future properties for non init users, 
+        if user is not a new user the operation will fail with not authorized code.
+      requestBody:
+        description: User profile params
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserProfileUpdateRequest'
+      responses:
+        '200':
+          description: OK - Updates were recived by the server
+        '401':
+          description: User is not a fresh user so can't write to it's profile without auth
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  message:
+                    type: string
+        '404':
+          $ref: '#/paths/~1v2~1forgot_password/post/responses/404'
+          x-miro: 'responses.yml#/UserNotFound'
+        '500':
+          description: 'Internal server error, see message and code for more info'
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  message:
+                    type: string
+  /v2/aircraft_types:
+    get:
+      operationId: aircraft_types
+      description: Returns a list of system supported aircraft types
+      tags:
+        - general
+      responses:
+        '200':
+          description: A valid list of system supported aircraft types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    title:
+                      type: string
+                example:
+                  - id: '737'
+                    title: Boeing 737
+                  - id: '747'
+                    title: Boeing 747
+                  - id: A320
+                    title: AirBus 320
+  /v2/settings:
+    get:
+      operationId: settings
+      description: Get the initial recommended settings for this user
+      tags:
+        - settings
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: An object with the user's settings for each module
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  modules:
+                    type: object
+                example:
+                  modules:
+                    module_a:
+                      property_a: x1
+                      size: 8
+                    module_b:
+                      property_a: 2
+                      ability: 67
+        '401':
+          description: User unauthorized to see settings
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  message:
+                    type: string
+        '404':
+          description: Requested resource not found
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  message:
+                    type: string
+  /v2/hello:
+    get:
+      tags:
+        - general
+      operationId: hello
+      description: |
+        Gets basic information about Skypath server version and minimal client version needed, 
+        if the app version is lower than the minimal allowed app version the client needs to
+        block logging-in and suggest the user to upgrade the Skypath app version on the device.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - ver
+                  - current_app_version
+                  - minimal_compatible_app_version
+                properties:
+                  ver:
+                    description: current server version
+                    example: 1.2.4
+                    type: string
+                  current_app_version:
+                    description: current app client version
+                    example: 4.0.0
+                    type: string
+                  minimal_compatible_app_version:
+                    description: current minimal supported app or client version
+                    example: 3.5.1
+                    type: string
+  /v2/login:
+    post:
+      tags:
+        - auth
+      operationId: login
+      description: |
+        Login to the server and get a authorization JWT token, this allows user to 
+        exchange their username / email and password for a JWT token which can be user in 
+        further requests. All requests that need this token are marked as such in this
+        documentation
+      requestBody:
+        description: Login params
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: OK - User was authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImUwMTAxMDEiLCJyb2xlIjoiYWRtaW4iLCJjb21wYW55IjoiWWFtYXNlZSIsImNvbXBhbnlJbnRlcm5hbElkIjoiWVMiLCJpYXQiOjE1NzM1NzM3MDQsImV4cCI6MTYwNTEwOTcwNH0.R9S2BOVpRx6H9_0lZWKqRg93kgYweR3kN3OZonHQY4w
+                  refresh_token:
+                    type: string
+                    example: R9S2BOVpRx6H9_0lZWKqRg93kgYweR3kN3OZonHQY4w
+                  user_id:
+                    type: string
+                    example: ym0565666
+                  role:
+                    type: string
+                    example: pilot
+                  company:
+                    type: string
+                    example: united airlines
+                  company_id:
+                    type: string
+                    example: UA
+                  first_name:
+                    type: string
+                    example: John
+                  last_name:
+                    type: string
+                    example: Baker
+                  email:
+                    type: string
+                    example: john.baker@skypathapi.com
+        '401':
+          description: User password or jwt token wrong / expired or user doesn't have permissions to login
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  message:
+                    type: string
+        '404':
+          $ref: '#/paths/~1v2~1forgot_password/post/responses/404'
+          x-miro: 'responses.yml#/UserNotFound'
+  /v2/partner_login:
+    post:
+      tags:
+        - auth
+      operationId: partner_login
+      description: |
+        Login to the server and get a authorization JWT token, this allows partners to 
+        exchange their API_KEY and customer user_id for a JWT token which can be user in 
+        further requests. All requests that need this token are marked as such in this
+        documentation
+      security:
+        - apiKey: []
+      requestBody:
+        description: Login params
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PartnerLoginRequest'
+      responses:
+        '200':
+          description: OK - User was authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1v2~1login/post/responses/200/content/application~1json/schema'
+                x-miro: 'types.yml#/LoginResponse'
+        '401':
+          $ref: '#/paths/~1v2~1login/post/responses/401'
+          x-miro: 'responses.yml#/Unauthorized'
+        '404':
+          $ref: '#/paths/~1v2~1forgot_password/post/responses/404'
+          x-miro: 'responses.yml#/UserNotFound'
+        '500':
+          $ref: '#/paths/~1v2~1set_user_profile/post/responses/500'
+          x-miro: 'responses.yml#/InternalServerError'
+  /v2/refresh_token:
+    post:
+      operationId: refresh
+      tags:
+        - auth
+      description: |
+        Each recived JWT token when using login has an expiry time of 3 hours, when the client
+        gets an error the token expired or even before the event of the token expiring, 
+        the client can call this route with the correct refresh token recived on the login route
+        and get new fresh JWT token. 
+      responses:
+        '200':
+          description: OK - new token generated
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - new_token
+                properties:
+                  new_token:
+                    description: new JWT token with new expiry of 3 hours
+                    example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImUwMTAxMDEiLCJyb2xlIjoiYWRtaW4iLCJjb21wYW55IjoiWWFtYXNlZSIsImNvbXBhbnlJbnRlcm5hbElkIjoiWVMiLCJpYXQiOjE1NzM1NzM3MDQsImV4cCI6MTYwNTEwOTcwNH0.R9S2BOVpRx6H9_0lZWKqRg93kgYweR3kN3OZonHQY4w
+                    type: string
+                  new_refresh_token:
+                    description: optional new refresh token in case server replaces refresh token
+                    example: Jyb2xlIjoiYWRtaW4iLCJjb21wYW55IjoiWWFtYXNlZSIsImNvbXBhbnlJ93kgYweR3kN3OZonHQY4w
+                    type: string
+        '401':
+          description: The refresh token is not authorized or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  message:
+                    type: string
+        '404':
+          $ref: '#/paths/~1v2~1settings/get/responses/404'
+          x-miro: 'responses.yml#/NotFound'
+        '500':
+          $ref: '#/paths/~1v2~1set_user_profile/post/responses/500'
+          x-miro: 'responses.yml#/InternalServerError'
+      requestBody:
+        description: JWT refresh token
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - token
+                - user_id
+              properties:
+                user_id:
+                  type: string
+                  description: The user_id or the requesting user
+                token:
+                  type: string
+                  description: The refresh token the client recived on login
+  /v2/delivery_token:
+    get:
+      tags:
+        - map
+      security:
+        - bearerAuth: []
+      operationId: delivery_token
+      description: |
+        The client needs to call this to get a valid CDN delivery key to be able
+        to get initial state and periodic updates or the world map
+      responses:
+        '200':
+          description: OK - returns a valid delivery key
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - delivery_token
+                  - expires
+                properties:
+                  delivery_token:
+                    description: use this token in the /updates /initial routes
+                    example: Jyb2xlIjoiYWRtaW4iLCJjb21wYW55IjoiWWFtYXNlZSIsImNvbXBhbnlJ93kgYweR3kN3OZonHQY4w
+                    type: string
+                  expires:
+                    description: when the token expires
+                    example: 15566666606
+                    type: integer
+        '401':
+          $ref: '#/paths/~1v2~1login/post/responses/401'
+          x-miro: 'responses.yml#/Unauthorized'
+        '404':
+          $ref: '#/paths/~1v2~1settings/get/responses/404'
+          x-miro: 'responses.yml#/NotFound'
+        '500':
+          $ref: '#/paths/~1v2~1set_user_profile/post/responses/500'
+          x-miro: 'responses.yml#/InternalServerError'
+  '/v2/initial/{company_id}/{aircraft_type}/{hours}/{delivery_token}/{delivery_token_expiry}':
+    get:
+      tags:
+        - map
+      operationId: initial
+      description: |
+        Get an initial world view of the turbulence and traffic of all aircrafts according 
+        to the user permissions, client or app should call this when initializing of after 
+        a period of no connectivity (max 5 minutes) to re-init it's internal memory to the 
+        current state. When network connectivity is stable the app should call the /update 
+        routes to get only the diff from the last update every minute or so.
+      parameters:
+        - in: path
+          name: company_id
+          schema:
+            type: string
+          required: true
+          description: Internal Company Id
+        - in: path
+          name: aircraft_type
+          schema:
+            type: string
+          required: true
+          description: Type of aircraft client is flying
+        - in: path
+          name: hours
+          schema:
+            type: integer
+          required: true
+          description: Number of hours back for turbulence reports
+        - in: path
+          name: delivery_token
+          schema:
+            type: string
+          required: true
+          description: Delivery token recived in /delivery_token
+        - in: path
+          name: delivery_token_expiry
+          schema:
+            type: integer
+          required: true
+          description: Delivery token expiration as recived in /delivery_token_expiry
+      responses:
+        '200':
+          description: OK - returns the world map turbulences and traffic for the last 6 hours
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  skypath_tick:
+                    type: integer
+                  updates:
+                    type: object
+                example:
+                  skypath_tick: 4567
+                  updates:
+                    turbulences:
+                      - alt: 34
+                        tileX: 1020
+                        tileY: 681
+                        sev: 2
+                        ts: 1574057162
+                      - alt: 35
+                        tileX: 1019
+                        tileY: 680
+                        sev: 1
+                        ts: 1574057163
+                    traffic:
+                      - uuid: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+                        alt: 24695.00122597656
+                        hdg: 235.8984375
+                        lat: 59.61784533711745
+                        lng: -38.32425758432409
+                        speed: 269.04998779296875
+                        ts: 1574057471
+        '401':
+          $ref: '#/paths/~1v2~1login/post/responses/401'
+          x-miro: 'responses.yml#/Unauthorized'
+        '404':
+          $ref: '#/paths/~1v2~1settings/get/responses/404'
+          x-miro: 'responses.yml#/NotFound'
+        '500':
+          $ref: '#/paths/~1v2~1set_user_profile/post/responses/500'
+          x-miro: 'responses.yml#/InternalServerError'
+  '/v2/updates/{company_id}/{aircraft_type}/{skypath_tick}/{delivery_token}/{delivery_token_expiry}':
+    get:
+      tags:
+        - map
+      operationId: updates
+      description: |
+        Returns updates since and including "skypath tick" to client, client calls this route 
+        every minute or so to stay in sync with the system updates of traffic positions and 
+        turbulence data
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: company_id
+          schema:
+            type: string
+            example: UA
+          required: true
+          description: Internal Company Id
+        - in: path
+          name: aircraft_type
+          schema:
+            type: string
+            example: '737'
+          required: true
+          description: Type of aircraft client is flying
+        - in: path
+          name: skypath_tick
+          schema:
+            type: integer
+            example: '708695'
+          required: true
+          description: last Skypath tick you got in the last succesfull get /update
+        - in: path
+          name: delivery_token
+          schema:
+            type: string
+            example: aa
+          required: true
+          description: Delivery token recived in /delivery_token
+        - in: path
+          name: delivery_token_expiry
+          schema:
+            type: integer
+            example: 1454655656
+          required: true
+          description: Delivery token expiration as recived in /delivery_token_expiry
+      responses:
+        '200':
+          description: Updates to the map since and including skypath tick
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  skypath_tick:
+                    type: integer
+                  updates:
+                    type: object
+                example:
+                  skypath_tick: 4567
+                  updates:
+                    turbulences:
+                      - alt: 34
+                        tileX: 1020
+                        tileY: 681
+                        sev: 2
+                        ts: 1574057162
+                      - alt: 35
+                        tileX: 1019
+                        tileY: 680
+                        sev: 1
+                        ts: 1574057163
+                    traffic:
+                      - uuid: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+                        alt: 24695.00122597656
+                        hdg: 235.8984375
+                        lat: 59.61784533711745
+                        lng: -38.32425758432409
+                        speed: 269.04998779296875
+                        ts: 1574057471
+        '401':
+          $ref: '#/paths/~1v2~1login/post/responses/401'
+          x-miro: 'responses.yml#/Unauthorized'
+        '404':
+          $ref: '#/paths/~1v2~1settings/get/responses/404'
+          x-miro: 'responses.yml#/NotFound'
+        '500':
+          $ref: '#/paths/~1v2~1set_user_profile/post/responses/500'
+          x-miro: 'responses.yml#/InternalServerError'
+  /v2/updates/:
+    post:
+      tags:
+        - map
+      operationId: updates
+      description: |
+        Client POSTs updates of aircraft position and new turbulence discovered to server every minute or so
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK - Updates were recived by the server
+        '207':
+          description: Some of the update was successful some not see code and message for more details
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  message:
+                    type: string
+        '401':
+          $ref: '#/paths/~1v2~1login/post/responses/401'
+          x-miro: 'responses.yml#/Unauthorized'
+        '404':
+          $ref: '#/paths/~1v2~1settings/get/responses/404'
+          x-miro: 'responses.yml#/NotFound'
+        '500':
+          $ref: '#/paths/~1v2~1set_user_profile/post/responses/500'
+          x-miro: 'responses.yml#/InternalServerError'
+      requestBody:
+        description: The objects to send from client to server with what changed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRequestBody'
+  /v2/positions:
+    get:
+      tags:
+        - map
+      operationId: positions
+      description: |
+        Client get update of all aircrafts positions, can be used for higher frequency traffic updates map if app doesn't support animations or DR positions
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK - World map of positions for all aircrafts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  positions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        uuid:
+                          description: unique ID for this plane generated by the server can be used to identify specific plane and diff between updates
+                          type: string
+                        alt:
+                          description: altitude of plane in tiles
+                          type: integer
+                        tile_x:
+                          description: position in x axis tiles
+                          type: integer
+                        tile_y:
+                          description: position in y axis tiles
+                          type: integer
+                        speed:
+                          description: speed in knots
+                          type: integer
+                        ts:
+                          description: unix epoch time stamp of update
+                          type: integer
+                        hdg:
+                          description: plane heading
+                          type: integer
+                        lat:
+                          description: position latitude
+                          type: number
+                        lon:
+                          description: position longitude
+                          type: number
+                      example:
+                        uuid: 46087afaeb79d682820fe604bc8a075c
+                        alt: 12
+                        tile_x: 1023
+                        tile_y: 304
+                        speed: 12
+                        ts: 1577349257
+                        hdg: 209
+                        lat: 44.55719190061772
+                        lon: 16.962290836610837
+        '401':
+          $ref: '#/paths/~1v2~1login/post/responses/401'
+          x-miro: 'responses.yml#/Unauthorized'
+        '404':
+          $ref: '#/paths/~1v2~1settings/get/responses/404'
+          x-miro: 'responses.yml#/NotFound'
+        '500':
+          $ref: '#/paths/~1v2~1set_user_profile/post/responses/500'
+          x-miro: 'responses.yml#/InternalServerError'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: JWT non expired token recived in response to a successful login request
+      bearerFormat: JWT
+    apiKey:
+      type: apiKey
+      name: api_key
+      description: 'API key to authorize requests. If you don''t have a Skypath API key, contact Yamasee support'
+      in: header
+  schemas:
+    ForgotPasswordRequest:
+      description: Body for frogot password request
+      type: object
+      required:
+        - user_id
+      properties:
+        user_id:
+          description: user name or email or requesting user
+          type: string
+    PartnerLoginRequest:
+      description: Body for partner login request
+      type: object
+      required:
+        - user_id
+        - company_id
+      properties:
+        user_id:
+          type: string
+        company_id:
+          type: string
+    LoginRequest:
+      description: Body for login request
+      type: object
+      required:
+        - user_id
+        - password
+      properties:
+        user_id:
+          description: user id or email of user that logs in
+          type: string
+        password:
+          description: clear text password
+          type: string
+    UserProfileUpdateRequest:
+      description: Body for user profile update request
+      type: object
+      required:
+        - username_or_email
+        - password
+      properties:
+        password:
+          description: new chosen password
+          type: string
+        username_or_email:
+          description: user id or email of user that updates his or her profile
+          type: string
+    UpdateRequestBody:
+      description: Update request body
+      type: object
+      properties:
+        events:
+          description: App Events that happened since last update
+          $ref: '#/components/schemas/Events'
+        turbulences:
+          description: Turbulence Events that happened since last update
+          $ref: '#/components/schemas/Turbulences'
+        position:
+          description: Position of the aircraft
+          $ref: '#/components/schemas/Position'
+    Events:
+      description: Events Array
+      type: array
+      items:
+        $ref: '#/components/schemas/Event'
+    Event:
+      description: Body for event
+      allOf:
+        - type: object
+          required:
+            - ts
+            - type
+            - meta
+          properties:
+            ts:
+              description: timestamp (unix epoch)
+              example: 140454545
+              type: integer
+            type:
+              description: type of events
+              example: NO_GPS
+              type: string
+            meta:
+              description: Additional info about the event
+              example:
+                size: 8
+              type: object
+    Turbulences:
+      description: Turbulences Array
+      type: array
+      items:
+        $ref: '#/components/schemas/Turbulence'
+    Turbulence:
+      description: Body for turbulence event
+      allOf:
+        - type: object
+          required:
+            - ts
+            - sev
+            - meta
+          properties:
+            ts:
+              description: timestamp (unix epoch)
+              example: 140454545
+              type: integer
+            type:
+              description: severity of turbulence
+              example: 3
+              type: integer
+            meta:
+              description: Additional info about the event
+              example:
+                size: 8
+              type: object
+    Position:
+      description: Aircraft Position
+      allOf:
+        - type: object
+          required:
+            - lat
+            - lon
+            - alt
+          properties:
+            lat:
+              description: latitude tile
+              example: 34
+              type: integer
+            lon:
+              description: lontitude tile
+              example: 702
+              type: integer
+            alt:
+              description: altitude of aircraft in tiles
+              example: 14
+              type: integer

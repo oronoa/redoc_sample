@@ -3,9 +3,9 @@ info:
   $ref: 'info.yml#/info'
 
 servers:
-  - url: https://devserver.yamasee-skypath.com/api
+  - url: https://devserver.yamasee-skypath.com
     description: Development Server
-  - url: https://server.yamasee-skypath.com/api
+  - url: https://server.yamasee-skypath.com
     description: Production Server
     
 tags:

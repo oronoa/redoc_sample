@@ -1,0 +1,2027 @@
+{
+	"info": {
+		"_postman_id": "36076b37-836f-4916-89e6-73a011d1dc4b",
+		"name": "Yamasee Skypath - Turbulence and Weather Management in Commercial Aviation - API documentation",
+		"description": "Skypath by Yamasee Inc is a unique service that can help airline pilots avoid clear air \nturbulence. This is the API documentation for interacting with the Skypath server \nfor application developers. It describes the Skypath turbulence avoidance server \nRest API in OpenAPI 3.0 specification. \nYou will need a partner API_KEY to be able to login to the system and get authentication \ntokens valid for the different REST operations\n\n\nContact Support:\n Name: Skypath API Team\n Email: info@yamasee.global",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "v2",
+			"item": [
+				{
+					"name": "updates",
+					"item": [
+						{
+							"name": "updates",
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"events\": [\n        {\n            \"ts\": \"<integer>\",\n            \"type\": \"<string>\",\n            \"meta\": \"<object>\"\n        },\n        {\n            \"ts\": \"<integer>\",\n            \"type\": \"<string>\",\n            \"meta\": \"<object>\"\n        }\n    ],\n    \"turbulences\": [\n        {\n            \"ts\": \"<integer>\",\n            \"meta\": \"<object>\",\n            \"type\": \"<integer>\"\n        },\n        {\n            \"ts\": \"<integer>\",\n            \"meta\": \"<object>\",\n            \"type\": \"<integer>\"\n        }\n    ],\n    \"position\": {\n        \"lat\": \"<integer>\",\n        \"lon\": \"<integer>\",\n        \"alt\": \"<integer>\"\n    }\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/updates/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"updates",
+										""
+									]
+								},
+								"description": "Client POSTs updates of aircraft position and new turbulence discovered to server every minute or so\n"
+							},
+							"response": [
+								{
+									"name": "User password or jwt token wrong / expired or user doesn't have permissions to login",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"events\": [\n        {\n            \"ts\": 140454545,\n            \"type\": \"NO_GPS\",\n            \"meta\": {\n                \"size\": 8\n            }\n        },\n        {\n            \"ts\": 140454545,\n            \"type\": \"NO_GPS\",\n            \"meta\": {\n                \"size\": 8\n            }\n        }\n    ],\n    \"turbulences\": [\n        {\n            \"ts\": 140454545,\n            \"meta\": {\n                \"size\": 8\n            },\n            \"type\": 3\n        },\n        {\n            \"ts\": 140454545,\n            \"meta\": {\n                \"size\": 8\n            },\n            \"type\": 3\n        }\n    ],\n    \"position\": {\n        \"lat\": 34,\n        \"lon\": 702,\n        \"alt\": 14\n    }\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v2/updates/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"updates",
+												""
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+								},
+								{
+									"name": "Some of the update was successful some not see code and message for more details",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"events\": [\n        {\n            \"ts\": 140454545,\n            \"type\": \"NO_GPS\",\n            \"meta\": {\n                \"size\": 8\n            }\n        },\n        {\n            \"ts\": 140454545,\n            \"type\": \"NO_GPS\",\n            \"meta\": {\n                \"size\": 8\n            }\n        }\n    ],\n    \"turbulences\": [\n        {\n            \"ts\": 140454545,\n            \"meta\": {\n                \"size\": 8\n            },\n            \"type\": 3\n        },\n        {\n            \"ts\": 140454545,\n            \"meta\": {\n                \"size\": 8\n            },\n            \"type\": 3\n        }\n    ],\n    \"position\": {\n        \"lat\": 34,\n        \"lon\": 702,\n        \"alt\": 14\n    }\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v2/updates/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"updates",
+												""
+											]
+										}
+									},
+									"status": "Multi-Status (WebDAV) (RFC 4918)",
+									"code": 207,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+								},
+								{
+									"name": "OK - Updates were recived by the server",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"events\": [\n        {\n            \"ts\": 140454545,\n            \"type\": \"NO_GPS\",\n            \"meta\": {\n                \"size\": 8\n            }\n        },\n        {\n            \"ts\": 140454545,\n            \"type\": \"NO_GPS\",\n            \"meta\": {\n                \"size\": 8\n            }\n        }\n    ],\n    \"turbulences\": [\n        {\n            \"ts\": 140454545,\n            \"meta\": {\n                \"size\": 8\n            },\n            \"type\": 3\n        },\n        {\n            \"ts\": 140454545,\n            \"meta\": {\n                \"size\": 8\n            },\n            \"type\": 3\n        }\n    ],\n    \"position\": {\n        \"lat\": 34,\n        \"lon\": 702,\n        \"alt\": 14\n    }\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v2/updates/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"updates",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Requested resource not found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"events\": [\n        {\n            \"ts\": 140454545,\n            \"type\": \"NO_GPS\",\n            \"meta\": {\n                \"size\": 8\n            }\n        },\n        {\n            \"ts\": 140454545,\n            \"type\": \"NO_GPS\",\n            \"meta\": {\n                \"size\": 8\n            }\n        }\n    ],\n    \"turbulences\": [\n        {\n            \"ts\": 140454545,\n            \"meta\": {\n                \"size\": 8\n            },\n            \"type\": 3\n        },\n        {\n            \"ts\": 140454545,\n            \"meta\": {\n                \"size\": 8\n            },\n            \"type\": 3\n        }\n    ],\n    \"position\": {\n        \"lat\": 34,\n        \"lon\": 702,\n        \"alt\": 14\n    }\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v2/updates/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"updates",
+												""
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+								},
+								{
+									"name": "Internal server error, see message and code for more info",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"events\": [\n        {\n            \"ts\": 140454545,\n            \"type\": \"NO_GPS\",\n            \"meta\": {\n                \"size\": 8\n            }\n        },\n        {\n            \"ts\": 140454545,\n            \"type\": \"NO_GPS\",\n            \"meta\": {\n                \"size\": 8\n            }\n        }\n    ],\n    \"turbulences\": [\n        {\n            \"ts\": 140454545,\n            \"meta\": {\n                \"size\": 8\n            },\n            \"type\": 3\n        },\n        {\n            \"ts\": 140454545,\n            \"meta\": {\n                \"size\": 8\n            },\n            \"type\": 3\n        }\n    ],\n    \"position\": {\n        \"lat\": 34,\n        \"lon\": 702,\n        \"alt\": 14\n    }\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v2/updates/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"updates",
+												""
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "updates",
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/updates/:company_id/:aircraft_type/:skypath_tick/:delivery_token/:delivery_token_expiry",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"updates",
+										":company_id",
+										":aircraft_type",
+										":skypath_tick",
+										":delivery_token",
+										":delivery_token_expiry"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "UA",
+											"description": "Internal Company Id"
+										},
+										{
+											"key": "aircraft_type",
+											"value": "737",
+											"description": "Type of aircraft client is flying"
+										},
+										{
+											"key": "skypath_tick",
+											"value": "708695",
+											"description": "last Skypath tick you got in the last succesfull get /update"
+										},
+										{
+											"key": "delivery_token",
+											"value": "aa",
+											"description": "Delivery token recived in /delivery_token"
+										},
+										{
+											"key": "delivery_token_expiry",
+											"value": 1454655656,
+											"description": "Delivery token expiration as recived in /delivery_token_expiry"
+										}
+									]
+								},
+								"description": "Returns updates since and including \"skypath tick\" to client, client calls this route \nevery minute or so to stay in sync with the system updates of traffic positions and \nturbulence data\n"
+							},
+							"response": [
+								{
+									"name": "User password or jwt token wrong / expired or user doesn't have permissions to login",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/v2/updates/:company_id/:aircraft_type/:skypath_tick/:delivery_token/:delivery_token_expiry",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"updates",
+												":company_id",
+												":aircraft_type",
+												":skypath_tick",
+												":delivery_token",
+												":delivery_token_expiry"
+											],
+											"variable": [
+												{
+													"key": "company_id"
+												},
+												{
+													"key": "aircraft_type"
+												},
+												{
+													"key": "skypath_tick"
+												},
+												{
+													"key": "delivery_token"
+												},
+												{
+													"key": "delivery_token_expiry"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+								},
+								{
+									"name": "Updates to the map since and including skypath tick",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/v2/updates/:company_id/:aircraft_type/:skypath_tick/:delivery_token/:delivery_token_expiry",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"updates",
+												":company_id",
+												":aircraft_type",
+												":skypath_tick",
+												":delivery_token",
+												":delivery_token_expiry"
+											],
+											"variable": [
+												{
+													"key": "company_id"
+												},
+												{
+													"key": "aircraft_type"
+												},
+												{
+													"key": "skypath_tick"
+												},
+												{
+													"key": "delivery_token"
+												},
+												{
+													"key": "delivery_token_expiry"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"skypath_tick\": 4567,\n \"updates\": {\n  \"turbulences\": [\n   {\n    \"alt\": 34,\n    \"tileX\": 1020,\n    \"tileY\": 681,\n    \"sev\": 2,\n    \"ts\": 1574057162\n   },\n   {\n    \"alt\": 35,\n    \"tileX\": 1019,\n    \"tileY\": 680,\n    \"sev\": 1,\n    \"ts\": 1574057163\n   }\n  ],\n  \"traffic\": [\n   {\n    \"uuid\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9\",\n    \"alt\": 24695.00122597656,\n    \"hdg\": 235.8984375,\n    \"lat\": 59.61784533711745,\n    \"lng\": -38.32425758432409,\n    \"speed\": 269.04998779296875,\n    \"ts\": 1574057471\n   }\n  ]\n }\n}"
+								},
+								{
+									"name": "Internal server error, see message and code for more info",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/v2/updates/:company_id/:aircraft_type/:skypath_tick/:delivery_token/:delivery_token_expiry",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"updates",
+												":company_id",
+												":aircraft_type",
+												":skypath_tick",
+												":delivery_token",
+												":delivery_token_expiry"
+											],
+											"variable": [
+												{
+													"key": "company_id"
+												},
+												{
+													"key": "aircraft_type"
+												},
+												{
+													"key": "skypath_tick"
+												},
+												{
+													"key": "delivery_token"
+												},
+												{
+													"key": "delivery_token_expiry"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+								},
+								{
+									"name": "Requested resource not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/v2/updates/:company_id/:aircraft_type/:skypath_tick/:delivery_token/:delivery_token_expiry",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"updates",
+												":company_id",
+												":aircraft_type",
+												":skypath_tick",
+												":delivery_token",
+												":delivery_token_expiry"
+											],
+											"variable": [
+												{
+													"key": "company_id"
+												},
+												{
+													"key": "aircraft_type"
+												},
+												{
+													"key": "skypath_tick"
+												},
+												{
+													"key": "delivery_token"
+												},
+												{
+													"key": "delivery_token_expiry"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "forgot password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/forgot_password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"forgot_password"
+							]
+						},
+						"description": "Used to request a password reset link for a user"
+					},
+					"response": [
+						{
+							"name": "Requested resource not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/forgot_password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"forgot_password"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						},
+						{
+							"name": "A response that describes user status",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/forgot_password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"forgot_password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"fresh\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "is new user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v2/is_new_user/:user_id_or_email",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"is_new_user",
+								":user_id_or_email"
+							],
+							"variable": [
+								{
+									"key": "user_id_or_email",
+									"value": "<string>",
+									"description": "User id or email for the requested user to check"
+								}
+							]
+						},
+						"description": "Returns if user is not initialized and never used the system"
+					},
+					"response": [
+						{
+							"name": "A response that describes user status",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/is_new_user/:user_id_or_email",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"is_new_user",
+										":user_id_or_email"
+									],
+									"variable": [
+										{
+											"key": "user_id_or_email"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"fresh\": false\n}"
+						},
+						{
+							"name": "Requested resource not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/is_new_user/:user_id_or_email",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"is_new_user",
+										":user_id_or_email"
+									],
+									"variable": [
+										{
+											"key": "user_id_or_email"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "set user profile",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username_or_email\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/set_user_profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"set_user_profile"
+							]
+						},
+						"description": "Client can set user profile like password and other future properties for non init users, \nif user is not a new user the operation will fail with not authorized code.\n"
+					},
+					"response": [
+						{
+							"name": "Internal server error, see message and code for more info",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username_or_email\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/set_user_profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"set_user_profile"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						},
+						{
+							"name": "OK - Updates were recived by the server",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username_or_email\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/set_user_profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"set_user_profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Requested resource not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username_or_email\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/set_user_profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"set_user_profile"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						},
+						{
+							"name": "User is not a fresh user so can't write to it's profile without auth",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username_or_email\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/set_user_profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"set_user_profile"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "aircraft types",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v2/aircraft_types",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"aircraft_types"
+							]
+						},
+						"description": "Returns a list of system supported aircraft types"
+					},
+					"response": [
+						{
+							"name": "A valid list of system supported aircraft types",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/aircraft_types",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"aircraft_types"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"title\": \"Boeing 737\"\n },\n {\n  \"title\": \"Boeing 747\"\n },\n {\n  \"title\": \"AirBus 320\"\n }\n]"
+						}
+					]
+				},
+				{
+					"name": "settings",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v2/settings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"settings"
+							]
+						},
+						"description": "Get the initial recommended settings for this user"
+					},
+					"response": [
+						{
+							"name": "User unauthorized to see settings",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/settings",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"settings"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						},
+						{
+							"name": "Requested resource not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/settings",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"settings"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						},
+						{
+							"name": "An object with the user's settings for each module",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/settings",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"settings"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"modules\": {\n  \"module_a\": {\n   \"property_a\": \"x1\",\n   \"size\": 8\n  },\n  \"module_b\": {\n   \"property_a\": 2,\n   \"ability\": 67\n  }\n }\n}"
+						}
+					]
+				},
+				{
+					"name": "hello",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v2/hello",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"hello"
+							]
+						},
+						"description": "Gets basic information about Skypath server version and minimal client version needed, \nif the app version is lower than the minimal allowed app version the client needs to\nblock logging-in and suggest the user to upgrade the Skypath app version on the device.\n"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/hello",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"hello"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"ver\": \"1.2.4\",\n \"current_app_version\": \"4.0.0\",\n \"minimal_compatible_app_version\": \"3.5.1\"\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"login"
+							]
+						},
+						"description": "Login to the server and get a authorization JWT token, this allows user to \nexchange their username / email and password for a JWT token which can be user in \nfurther requests. All requests that need this token are marked as such in this\ndocumentation\n"
+					},
+					"response": [
+						{
+							"name": "User password or jwt token wrong / expired or user doesn't have permissions to login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						},
+						{
+							"name": "OK - User was authenticated",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImUwMTAxMDEiLCJyb2xlIjoiYWRtaW4iLCJjb21wYW55IjoiWWFtYXNlZSIsImNvbXBhbnlJbnRlcm5hbElkIjoiWVMiLCJpYXQiOjE1NzM1NzM3MDQsImV4cCI6MTYwNTEwOTcwNH0.R9S2BOVpRx6H9_0lZWKqRg93kgYweR3kN3OZonHQY4w\",\n \"refresh_token\": \"R9S2BOVpRx6H9_0lZWKqRg93kgYweR3kN3OZonHQY4w\",\n \"user_id\": \"ym0565666\",\n \"role\": \"pilot\",\n \"company\": \"united airlines\",\n \"company_id\": \"UA\",\n \"first_name\": \"John\",\n \"last_name\": \"Baker\",\n \"email\": \"john.baker@skypathapi.com\"\n}"
+						},
+						{
+							"name": "Requested resource not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"login"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "partner login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "api_key",
+								"value": "",
+								"description": "API key to authorize requests. If you don't have a Skypath API key, contact Yamasee support"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"<string>\",\n    \"company_id\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/partner_login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"partner_login"
+							]
+						},
+						"description": "Login to the server and get a authorization JWT token, this allows partners to \nexchange their API_KEY and customer user_id for a JWT token which can be user in \nfurther requests. All requests that need this token are marked as such in this\ndocumentation\n"
+					},
+					"response": [
+						{
+							"name": "Requested resource not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"<string>\",\n    \"company_id\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/partner_login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"partner_login"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						},
+						{
+							"name": "User password or jwt token wrong / expired or user doesn't have permissions to login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"<string>\",\n    \"company_id\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/partner_login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"partner_login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						},
+						{
+							"name": "Internal server error, see message and code for more info",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"<string>\",\n    \"company_id\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/partner_login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"partner_login"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						},
+						{
+							"name": "OK - User was authenticated",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"<string>\",\n    \"company_id\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/partner_login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"partner_login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImUwMTAxMDEiLCJyb2xlIjoiYWRtaW4iLCJjb21wYW55IjoiWWFtYXNlZSIsImNvbXBhbnlJbnRlcm5hbElkIjoiWVMiLCJpYXQiOjE1NzM1NzM3MDQsImV4cCI6MTYwNTEwOTcwNH0.R9S2BOVpRx6H9_0lZWKqRg93kgYweR3kN3OZonHQY4w\",\n \"refresh_token\": \"R9S2BOVpRx6H9_0lZWKqRg93kgYweR3kN3OZonHQY4w\",\n \"user_id\": \"ym0565666\",\n \"role\": \"pilot\",\n \"company\": \"united airlines\",\n \"company_id\": \"UA\",\n \"first_name\": \"John\",\n \"last_name\": \"Baker\",\n \"email\": \"john.baker@skypathapi.com\"\n}"
+						}
+					]
+				},
+				{
+					"name": "refresh",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"<string>\",\n    \"user_id\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/refresh_token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"refresh_token"
+							]
+						},
+						"description": "Each recived JWT token when using login has an expiry time of 3 hours, when the client\ngets an error the token expired or even before the event of the token expiring, \nthe client can call this route with the correct refresh token recived on the login route\nand get new fresh JWT token. \n"
+					},
+					"response": [
+						{
+							"name": "The refresh token is not authorized or invalid",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"token\": \"<string>\",\n    \"user_id\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/refresh_token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"refresh_token"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						},
+						{
+							"name": "OK - new token generated",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"token\": \"<string>\",\n    \"user_id\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/refresh_token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"refresh_token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"new_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImUwMTAxMDEiLCJyb2xlIjoiYWRtaW4iLCJjb21wYW55IjoiWWFtYXNlZSIsImNvbXBhbnlJbnRlcm5hbElkIjoiWVMiLCJpYXQiOjE1NzM1NzM3MDQsImV4cCI6MTYwNTEwOTcwNH0.R9S2BOVpRx6H9_0lZWKqRg93kgYweR3kN3OZonHQY4w\",\n \"new_refresh_token\": \"Jyb2xlIjoiYWRtaW4iLCJjb21wYW55IjoiWWFtYXNlZSIsImNvbXBhbnlJ93kgYweR3kN3OZonHQY4w\"\n}"
+						},
+						{
+							"name": "Requested resource not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"token\": \"<string>\",\n    \"user_id\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/refresh_token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"refresh_token"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						},
+						{
+							"name": "Internal server error, see message and code for more info",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"token\": \"<string>\",\n    \"user_id\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/refresh_token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"refresh_token"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delivery token",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v2/delivery_token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"delivery_token"
+							]
+						},
+						"description": "The client needs to call this to get a valid CDN delivery key to be able\nto get initial state and periodic updates or the world map\n"
+					},
+					"response": [
+						{
+							"name": "User password or jwt token wrong / expired or user doesn't have permissions to login",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/delivery_token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"delivery_token"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						},
+						{
+							"name": "Internal server error, see message and code for more info",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/delivery_token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"delivery_token"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						},
+						{
+							"name": "OK - returns a valid delivery key",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/delivery_token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"delivery_token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"delivery_token\": \"Jyb2xlIjoiYWRtaW4iLCJjb21wYW55IjoiWWFtYXNlZSIsImNvbXBhbnlJ93kgYweR3kN3OZonHQY4w\",\n \"expires\": 15566666606\n}"
+						},
+						{
+							"name": "Requested resource not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/delivery_token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"delivery_token"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "initial",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v2/initial/:company_id/:aircraft_type/:hours/:delivery_token/:delivery_token_expiry",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"initial",
+								":company_id",
+								":aircraft_type",
+								":hours",
+								":delivery_token",
+								":delivery_token_expiry"
+							],
+							"variable": [
+								{
+									"key": "company_id",
+									"value": "<string>",
+									"description": "Internal Company Id"
+								},
+								{
+									"key": "aircraft_type",
+									"value": "<string>",
+									"description": "Type of aircraft client is flying"
+								},
+								{
+									"key": "hours",
+									"value": "<integer>",
+									"description": "Number of hours back for turbulence reports"
+								},
+								{
+									"key": "delivery_token",
+									"value": "<string>",
+									"description": "Delivery token recived in /delivery_token"
+								},
+								{
+									"key": "delivery_token_expiry",
+									"value": "<integer>",
+									"description": "Delivery token expiration as recived in /delivery_token_expiry"
+								}
+							]
+						},
+						"description": "Get an initial world view of the turbulence and traffic of all aircrafts according \nto the user permissions, client or app should call this when initializing of after \na period of no connectivity (max 5 minutes) to re-init it's internal memory to the \ncurrent state. When network connectivity is stable the app should call the /update \nroutes to get only the diff from the last update every minute or so.\n"
+					},
+					"response": [
+						{
+							"name": "Requested resource not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/initial/:company_id/:aircraft_type/:hours/:delivery_token/:delivery_token_expiry",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"initial",
+										":company_id",
+										":aircraft_type",
+										":hours",
+										":delivery_token",
+										":delivery_token_expiry"
+									],
+									"variable": [
+										{
+											"key": "company_id"
+										},
+										{
+											"key": "aircraft_type"
+										},
+										{
+											"key": "hours"
+										},
+										{
+											"key": "delivery_token"
+										},
+										{
+											"key": "delivery_token_expiry"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						},
+						{
+							"name": "OK - returns the world map turbulences and traffic for the last 6 hours",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/initial/:company_id/:aircraft_type/:hours/:delivery_token/:delivery_token_expiry",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"initial",
+										":company_id",
+										":aircraft_type",
+										":hours",
+										":delivery_token",
+										":delivery_token_expiry"
+									],
+									"variable": [
+										{
+											"key": "company_id"
+										},
+										{
+											"key": "aircraft_type"
+										},
+										{
+											"key": "hours"
+										},
+										{
+											"key": "delivery_token"
+										},
+										{
+											"key": "delivery_token_expiry"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"skypath_tick\": 4567,\n \"updates\": {\n  \"turbulences\": [\n   {\n    \"alt\": 34,\n    \"tileX\": 1020,\n    \"tileY\": 681,\n    \"sev\": 2,\n    \"ts\": 1574057162\n   },\n   {\n    \"alt\": 35,\n    \"tileX\": 1019,\n    \"tileY\": 680,\n    \"sev\": 1,\n    \"ts\": 1574057163\n   }\n  ],\n  \"traffic\": [\n   {\n    \"uuid\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9\",\n    \"alt\": 24695.00122597656,\n    \"hdg\": 235.8984375,\n    \"lat\": 59.61784533711745,\n    \"lng\": -38.32425758432409,\n    \"speed\": 269.04998779296875,\n    \"ts\": 1574057471\n   }\n  ]\n }\n}"
+						},
+						{
+							"name": "Internal server error, see message and code for more info",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/initial/:company_id/:aircraft_type/:hours/:delivery_token/:delivery_token_expiry",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"initial",
+										":company_id",
+										":aircraft_type",
+										":hours",
+										":delivery_token",
+										":delivery_token_expiry"
+									],
+									"variable": [
+										{
+											"key": "company_id"
+										},
+										{
+											"key": "aircraft_type"
+										},
+										{
+											"key": "hours"
+										},
+										{
+											"key": "delivery_token"
+										},
+										{
+											"key": "delivery_token_expiry"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						},
+						{
+							"name": "User password or jwt token wrong / expired or user doesn't have permissions to login",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/initial/:company_id/:aircraft_type/:hours/:delivery_token/:delivery_token_expiry",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"initial",
+										":company_id",
+										":aircraft_type",
+										":hours",
+										":delivery_token",
+										":delivery_token_expiry"
+									],
+									"variable": [
+										{
+											"key": "company_id"
+										},
+										{
+											"key": "aircraft_type"
+										},
+										{
+											"key": "hours"
+										},
+										{
+											"key": "delivery_token"
+										},
+										{
+											"key": "delivery_token_expiry"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "positions",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v2/positions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"positions"
+							]
+						},
+						"description": "Client get update of all aircrafts positions, can be used for higher frequency traffic updates map if app doesn't support animations or DR positions\n"
+					},
+					"response": [
+						{
+							"name": "User password or jwt token wrong / expired or user doesn't have permissions to login",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/positions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"positions"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						},
+						{
+							"name": "OK - World map of positions for all aircrafts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/positions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"positions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"positions\": [\n  {\n   \"uuid\": \"46087afaeb79d682820fe604bc8a075c\",\n   \"alt\": 12,\n   \"tile_x\": 1023,\n   \"tile_y\": 304,\n   \"speed\": 12,\n   \"ts\": 1577349257,\n   \"hdg\": 209,\n   \"lat\": 44.55719190061772,\n   \"lon\": 16.962290836610837\n  },\n  {\n   \"uuid\": \"46087afaeb79d682820fe604bc8a075c\",\n   \"alt\": 12,\n   \"tile_x\": 1023,\n   \"tile_y\": 304,\n   \"speed\": 12,\n   \"ts\": 1577349257,\n   \"hdg\": 209,\n   \"lat\": 44.55719190061772,\n   \"lon\": 16.962290836610837\n  }\n ]\n}"
+						},
+						{
+							"name": "Internal server error, see message and code for more info",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/positions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"positions"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						},
+						{
+							"name": "Requested resource not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/positions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"positions"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\",\n \"code\": \"<integer>\"\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"variable": [
+		{
+			"id": "baseUrl",
+			"key": "baseUrl",
+			"value": "https://devserver.yamasee-skypath.com",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
