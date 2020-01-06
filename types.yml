@@ -211,9 +211,18 @@ InitialResponse:
     hours:
       description: how many hours back data included
       type: integer
+    properties:
     updates: 
-      description: actual updates collection
       type: object
+      properties:
+        positions:
+          type: array
+          items:
+            $ref: "#/Position"
+        turbulences:
+          type: array
+          items:
+            $ref: "#/TurbulenceReport"
   example:
     skypath_tick: 4567
     updates:
