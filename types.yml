@@ -55,22 +55,22 @@ TurbulenceReport:
   type: object
   properties: 
     alt:
-      description: bla bla
+      description: alt in tiles 
       type: number
     tileX:
-      description: bla bla
+      description: tileX of report
       type: number
     tileY:
-      description: bla bla
+      description: tileY of report
       type: number
     sev:
-      description: bla bla
+      description: severity level
       type: number
     tick:
-      description: bla bla
+      description: skypath system virtual tick at time of report
       type: number
     ts:
-      description: bla bla
+      description: unix epoch
       type: number
 
 TurbulenceArray:
