@@ -211,7 +211,6 @@ InitialResponse:
     hours:
       description: how many hours back data included
       type: integer
-    properties:
     updates: 
       type: object
       properties:
@@ -239,7 +238,7 @@ InitialResponse:
           tileY: 680
           sev: 1
           ts: 1574057163
-      traffic: 
+      positions: 
         -
           uuid: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9'
           alt: 24695.00122597656
@@ -283,7 +282,7 @@ UpdateResponse:
           sev: 1
           tick: 76
           ts: 1574057163
-      traffic: 
+      positions: 
         -
           airplane: '737'
           alt: 24695.00122597656
