@@ -51,6 +51,35 @@ PositionsResponse:
     positions:
       $ref: "#/PositionsArray"
 
+TurbulenceReport:
+  type: object
+  properties: 
+    alt:
+      description: bla bla
+      type: number
+    tileX:
+      description: bla bla
+      type: number
+    tileY:
+      description: bla bla
+      type: number
+    sev:
+      description: bla bla
+      type: number
+    tick:
+      description: bla bla
+      type: number
+    ts:
+      description: bla bla
+      type: number
+
+TurbulenceArray:
+  type: array
+  items:
+    $ref: "#/TurbulenceReport"
+
+
+
 AircraftTypesResponse:
   type: array
   items:
@@ -177,8 +206,13 @@ InitialResponse:
   type: object
   properties:
     skypath_tick:
+      description: describes the current system virtual clock tick, used for partial updates 
+      type: integer
+    hours:
+      description: how many hours back data included
       type: integer
     updates: 
+      description: actual updates collection
       type: object
   example:
     skypath_tick: 4567
@@ -213,6 +247,15 @@ UpdateResponse:
       type: integer
     updates: 
       type: object
+      properties:
+        positions:
+          type: array
+          items:
+            $ref: "#/Position"
+        turbulences:
+          type: array
+          items:
+            $ref: "#/TurbulenceReport"
   example:
     skypath_tick: 4567
     updates:
@@ -222,19 +265,22 @@ UpdateResponse:
           tileX: 1020
           tileY: 681
           sev: 2
+          tick: 76
           ts: 1574057162
         -
           alt: 35
           tileX: 1019
           tileY: 680
           sev: 1
+          tick: 76
           ts: 1574057163
       traffic: 
         -
-          uuid: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9'
+          airplane: '737'
           alt: 24695.00122597656
           hdg: 235.8984375
           lat: 59.61784533711745
           lng: -38.32425758432409
           speed: 269.04998779296875
           ts: 1574057471
+          uuid: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9'

@@ -36,11 +36,7 @@ paths:
               $ref: '#/components/schemas/ForgotPasswordRequest'
       responses:
         200:
-          description: A response that describes user status
-          content:
-            application/json:
-              schema:
-                $ref: 'types.yml#/UserStatusResponse'
+          description: OK - Password reset link was sent to registered email
         404:
           $ref: 'responses.yml#/UserNotFound'    
 
@@ -206,7 +202,7 @@ paths:
 
   /v2/refresh_token:
     post:
-      operationId: refresh
+      operationId: refresh_token
       tags:
         - auth
       description: |
