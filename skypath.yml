@@ -332,8 +332,6 @@ paths:
         Returns updates since and including "skypath tick" to client, client calls this route 
         every minute or so to stay in sync with the system updates of traffic positions and 
         turbulence data
-      security:
-        - bearerAuth: []         
       parameters:
         - in: path
           name: company_id
@@ -415,15 +413,35 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateRequestBody'
   
-  /v2/positions:
+  /v2/positions/{company_id}/{delivery_token}/{delivery_token_expiry}::
     get:
       tags:
         - map
       operationId: positions
       description: |  
         Client get update of all aircrafts positions, can be used for higher frequency traffic updates map if app doesn't support animations or DR positions
-      security:
-        - bearerAuth: []         
+      parameters:
+        - in: path
+          name: company_id
+          schema:
+            type: string
+            example: "UA"
+          required: true
+          description: Internal Company Id
+        - in: path
+          name: delivery_token
+          schema:
+            type: string
+            example : "aa"
+          required: true
+          description: Delivery token recived in /delivery_token
+        - in: path
+          name: delivery_token_expiry
+          schema:
+            type: integer
+            example: 1454655656
+          required: true
+          description: Delivery token expiration as recived in /delivery_token_expiry
 
       responses:
         200:
