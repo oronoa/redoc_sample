@@ -469,7 +469,7 @@ components:
     
     apiKey:
       type: apiKey
-      name: api_key
+      name: api-key
       description: API key to authorize requests. If you don't have a Skypath API key, contact Yamasee support
       in: header
   

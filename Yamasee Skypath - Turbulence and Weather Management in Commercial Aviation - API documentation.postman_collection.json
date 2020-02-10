@@ -1170,7 +1170,7 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "api_key",
+								"key": "api-key",
 								"value": "",
 								"description": "API key to authorize requests. If you don't have a Skypath API key, contact Yamasee support"
 							},
