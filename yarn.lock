@@ -72,6 +72,11 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
+async@^3.1.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/async/-/async-3.2.0.tgz#b3a2685c5ebb641d3de02d161002c60fc9f85720"
+  integrity sha512-TR2mEZFVOj2pLStYxLht7TyfuRzaydfpxr3k9RpHIzMgw7A64dzsdqCxH1WJyQdoe8T10nDXd9wnEigmiuHIZw==
+
 better-ajv-errors@^0.5.2:
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/better-ajv-errors/-/better-ajv-errors-0.5.7.tgz#246123954161cc0ef124761c55a121c96b0cdce0"
@@ -395,9 +400,9 @@ js-yaml@^3.12.1:
     esprima "^4.0.0"
 
 json-pointer@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/json-pointer/-/json-pointer-0.6.0.tgz#8e500550a6aac5464a473377da57aa6cc22828d7"
-  integrity sha1-jlAFUKaqxUZKRzN32leqbMIoKNc=
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/json-pointer/-/json-pointer-0.6.1.tgz#3c6caa6ac139e2599f5a1659d39852154015054d"
+  integrity sha512-3OvjqKdCBvH41DLpV4iSt6v2XhZXV1bPB4OROuknvUXI7ZQNofieCPkmE26stEJ9zdQuvIxDHCuYhfgxFAAs+Q==
   dependencies:
     foreach "^2.0.4"
 
